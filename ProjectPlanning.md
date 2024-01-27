@@ -1,5 +1,10 @@
 # DonatePlate
 
+![ERD](https://github.com/uzernamex/DonatePlate/blob/main/frontend/docs/ERD.png?raw=true)
+
+
+To re-write / Drafts
+
 Overview:
 • An app that reduces food insecurity by facilitating the collection and distribution of overstock from organizations, hospitals,
 
