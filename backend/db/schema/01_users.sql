@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS Users CASCADE;
-CREATE TABLE Users (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
@@ -7,8 +7,8 @@ CREATE TABLE Users (
   sub_id VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS FoodDonations CASCADE;
-CREATE TABLE FoodDonations (
+DROP TABLE IF EXISTS food_donations CASCADE;
+CREATE TABLE food_donations (
   id SERIAL PRIMARY KEY NOT NULL,
   description TEXT NOT NULL,
   start_date DATE,
@@ -24,8 +24,8 @@ CREATE TABLE Address (
   address_1 VARCHAR(255) NOT NULL,
   address_2 VARCHAR(255),
 city VARCHAR(255),
-province VARCHAR[],
-postal_code VARCHAR(10),
+province VARCHAR(255),
+postal_code VARCHAR(7),
 country VARCHAR(255) default 'Canada'
 );
 
