@@ -1,7 +1,8 @@
 // load .env data into process.env
-require('dotenv').config();
+require("dotenv").config();
 
 // Web server config
+
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
@@ -15,6 +16,7 @@ var bodyParser = require('body-parser')
 
 
 app.set('view engine', 'ejs');
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -36,33 +38,31 @@ app.use(function (req, res, next) {
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
+
   // Pass to next layer of middleware
   next();
 });
 
-//Access to XMLHttpRequest at 'http://localhost:8080/api/users/login' from origin 'http://localhost:3000' has been blocked by CORS policy:
-//Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:8080' that is not equal to the supplied origin.
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
+const userApiRoutes = require("./routes/users-api");
 // const widgetApiRoutes = require('./routes/widgets-api');
-const usersRoutes = require('./routes/users');
+const usersRoutes = require("./routes/users");
+
+const foodDonationRoutes = require("./routes/food_donation_form");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
-// app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
-// Note: mount other resources here, using the same pattern above
+app.use("/api/users", userApiRoutes);
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
+app.use("/users", usersRoutes);
 
-app.get('/', (req, res) => {
-  res.render('index');
+app.use("/api/food-donations", foodDonationRoutes);
+
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
 app.listen(PORT, () => {

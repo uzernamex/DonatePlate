@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-const DonationForm = () => (
+const FoodDonationForm = () => (
   <div>
     <h1>Food Donations</h1>
     <Formik
@@ -24,10 +24,26 @@ const DonationForm = () => (
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        console.log("values:", values);
+        fetch("http://localhost:8080/api/food-donations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle success response from the server
+            console.log("Form submitted successfully!", data);
+          })
+          .catch((error) => {
+            // Handle error
+            console.error("Error submitting form:", error);
+          })
+          .finally(() => {
+            setSubmitting(false); // Reset the form submission state
+          });
       }}
     >
       {({
@@ -42,6 +58,7 @@ const DonationForm = () => (
       }) => (
         <form onSubmit={handleSubmit}>
           <label>
+            description
             <input
               type="text"
               name="description"
@@ -137,4 +154,4 @@ const DonationForm = () => (
   </div>
 );
 
-export default donationForm;
+export default FoodDonationForm;
