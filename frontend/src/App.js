@@ -6,15 +6,17 @@ import FoodDonationForm from "./components/FoodDonationForm"
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
-  const { isLoading, error } = useAuth0();
+  const { isLoading, error, user } = useAuth0();
   return (
     <main>
       <h1>Welcome to DonatePlate</h1>
+
+      {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
-      {!error && !isLoading && (
+      {!error && !isLoading && user && (
         <>
-          <LoginButton />
+          
           <LogoutButton />
           <Profile />
           <FoodDonationForm/>

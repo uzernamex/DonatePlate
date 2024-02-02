@@ -1,8 +1,8 @@
 -- Users
-INSERT INTO users (first_name, last_name, email, sub_id) VALUES
-  ('Kamran', 'Dar', 'abcdefg@hotmail.com', '10001'),
-  ('Alice', 'Kelsey', 'sesamestreetbakedgoods@yahoo.ca', '10002'),
-  ('Sahai', 'Atkinson', 'megpete411@gmail.com', '10003');
+INSERT INTO users (name, email, sub_id) VALUES
+  ('Kamran', 'abcdefg@hotmail.com', '10001'),
+  ('Alice',  'sesamestreetbakedgoods@yahoo.ca', '10002'),
+  ('Sahai',  'megpete411@gmail.com', '10003');
 
 -- Food Donations
 INSERT INTO food_donations (description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams)
