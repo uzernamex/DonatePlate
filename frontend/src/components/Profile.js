@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
-import axios from "axios";
 
 
 const Profile = () => {
@@ -20,15 +19,6 @@ const Profile = () => {
       }).then(res => {
         window.sessionStorage.setItem("userId", res.id);
       }).catch(error => console.log(error));
-      // axios.post('http://localhost:8080/api/users/login', user, { 
-      //   headers: {
-      //   'Content-Type': 'application/json',
-      // }}).then((res)=>{
-      //   console.log(res);
-      // }).catch((error)=> {
-      //   console.log("My Error",error);
-  
-      // })
     }
    
   }, [user]);
