@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-const donationForm = () => (
+const DonationForm = () => (
   <div>
     <h1>Food Donations</h1>
     <Formik
