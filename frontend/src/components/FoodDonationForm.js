@@ -24,7 +24,8 @@ const FoodDonationForm = () => (
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        fetch("/submit-donation", {
+        console.log("values:", values);
+        fetch("http://localhost:8080/api/food-donations", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +58,7 @@ const FoodDonationForm = () => (
       }) => (
         <form onSubmit={handleSubmit}>
           <label>
-            description 
+            description
             <input
               type="text"
               name="description"
