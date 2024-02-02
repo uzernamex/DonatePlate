@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS Users CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255),
   sub_id VARCHAR(255)
-);
+  );
 
 DROP TABLE IF EXISTS food_donations CASCADE;
 CREATE TABLE food_donations (
@@ -18,19 +18,19 @@ CREATE TABLE food_donations (
   allergies TEXT, target_amount_in_grams BIGINT
  );
 
- DROP TABLE IF EXISTS Address CASCADE;
-CREATE TABLE Address (
+DROP TABLE IF EXISTS address CASCADE;
+CREATE TABLE address (
   id SERIAL PRIMARY KEY NOT NULL,
   address_1 VARCHAR(255) NOT NULL,
   address_2 VARCHAR(255),
-city VARCHAR(255),
-province VARCHAR(255),
-postal_code VARCHAR(7),
-country VARCHAR(255) default 'Canada'
-);
+  city VARCHAR(255),
+  province VARCHAR(255),
+  postal_code VARCHAR(7),
+  country VARCHAR(255) default 'Canada'
+  );
 
-DROP TABLE IF EXISTS Messages CASCADE;
-CREATE TABLE Messages (
+DROP TABLE IF EXISTS messages CASCADE;
+CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
   email VARCHAR(255),
   messages TEXT,

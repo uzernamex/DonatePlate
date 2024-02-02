@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 
-const Basic = () => (
+const donationForm = () => (
   <div>
     <h1>Food Donations</h1>
     <Formik
@@ -60,4 +60,4 @@ const Basic = () => (
   </div>
 );
 
-export default Basic;
+export default donationForm;
