@@ -1,19 +1,25 @@
-import React from 'react';
-import { Formik } from 'formik';
+import React from "react";
+import { Formik } from "formik";
 
 const donationForm = () => (
   <div>
     <h1>Food Donations</h1>
     <Formik
-      initialValues={{ email: '', password: '' }}
-      validate={values => {
+      initialValues={{
+        description: "",
+        start_date: "",
+        end_date: "",
+        phone: "",
+        preferred_food: "",
+        allergies: "",
+        target_amount_in_grams: "",
+      }}
+      validate={(values) => {
         const errors = {};
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
+        if (!values.phone) {
+          errors.phone = "Required";
+        } else if (!/[0-9]/i.test(values.phone)) {
+          errors.phone = "Invalid phone number";
         }
         return errors;
       }}
@@ -35,22 +41,93 @@ const donationForm = () => (
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.email}
-          />
-          {errors.email && touched.email && errors.email}
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.password}
-          />
-          {errors.password && touched.password && errors.password}
+          <label>
+            <input
+              type="text"
+              name="description"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.description}
+            />
+            {errors.description && touched.description && errors.description}
+          </label>
+
+          <label>
+            Start Date:
+            <input
+              type="text"
+              name="start_date"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.start_date}
+            />
+            {errors.start_date && touched.start_date && errors.start_date}
+          </label>
+
+          <label>
+            End Date:
+            <input
+              type="text"
+              name="end_date"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.end_date}
+            />
+            {errors.end_date && touched.end_date && errors.end_date}
+          </label>
+
+          <label>
+            Phone:
+            <input
+              type="text"
+              name="phone"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.phone}
+            />
+            {errors.phone && touched.phone && errors.phone}
+          </label>
+
+          <label>
+            Preferred Food:
+            <input
+              type="text"
+              name="preferred_food"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.preferred_food}
+            />
+            {errors.preferred_food &&
+              touched.preferred_food &&
+              errors.preferred_food}
+          </label>
+
+          <label>
+            Allergies:
+            <input
+              type="text"
+              name="allergies"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.allergies}
+            />
+            {errors.allergies && touched.allergies && errors.allergies}
+          </label>
+
+          <label>
+            Target Amount in Grams:
+            <input
+              type="text"
+              name="target_amount_in_grams"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.target_amount_in_grams}
+            />
+            {errors.target_amount_in_grams &&
+              touched.target_amount_in_grams &&
+              errors.target_amount_in_grams}
+          </label>
+
           <button type="submit" disabled={isSubmitting}>
             Submit
           </button>

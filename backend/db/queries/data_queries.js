@@ -11,6 +11,7 @@ const getFoodDonations = () => {
     return data.rows;
   });
 };
+
 const getAddress = () => {
   return db.query("SELECT * FROM address;").then((data) => {
     return data.rows;
