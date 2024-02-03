@@ -19,8 +19,10 @@ function App() {
         <>
           <LogoutButton />
           <Profile />
-          <FoodDonationForm />
-          <AddressForm />
+          <div className="form-container">
+            <FoodDonationForm />
+            <AddressForm />
+          </div>
         </>
       )}
     </main>
