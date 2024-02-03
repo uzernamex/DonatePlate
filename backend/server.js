@@ -52,7 +52,9 @@ const foodDonationRoutes = require("./routes/food_donation_form");
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/api/users", userApiRoutes);
+
 app.use("/users", usersRoutes);
+
 app.use("/api/food-donations", foodDonationRoutes);
 
 app.get("/", (req, res) => {
