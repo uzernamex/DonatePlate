@@ -5,7 +5,6 @@ const { getSingleDonationRequestById } = require('../db/queries/DisplaySingleDon
 
 router.get('/:id', (req, res) => {
   const donationId = req.params.id;
-  console.log("Donation IS", donationId);
   if (!/^\d+$/.test(donationId)) {
     return res.status(400).json({ error: 'Invalid donation ID' });
   }
