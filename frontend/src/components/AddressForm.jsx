@@ -1,31 +1,29 @@
 import React from "react";
 import { Formik } from "formik";
+import "../styles/address.scss";
 
-const FoodDonationForm = () => (
-  <div>
-    <h1>Food Donations</h1>
+const AddressForm = () => (
+  <div className="address-form-container">
+    <h1> Address </h1>
     <Formik
       initialValues={{
-        description: "",
-        start_date: "",
-        end_date: "",
-        phone: "",
-        preferred_food: "",
-        allergies: "",
-        target_amount_in_grams: "",
+        Address_1: "",
+        Address_2: "",
+        City: "",
+        Province: "",
+        PostalCode: "",
+        Country: "Canada",
       }}
       validate={(values) => {
         const errors = {};
-        if (!values.phone) {
-          errors.phone = "Required";
-        } else if (!/[0-9]/i.test(values.phone)) {
-          errors.phone = "Invalid phone number";
+        if (!values.PostalCode) {
+          errors.PostalCode = "Format = 'A1A 1A1";
         }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
         console.log("values:", values);
-        fetch("http://localhost:8080/api/food-donations", {
+        fetch("http://localhost:8080/api/address-form", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -34,15 +32,13 @@ const FoodDonationForm = () => (
         })
           .then((response) => response.json())
           .then((data) => {
-            // Handle success response from the server
             console.log("Form submitted successfully!", data);
           })
           .catch((error) => {
-            // Handle error
             console.error("Error submitting form:", error);
           })
           .finally(() => {
-            setSubmitting(false); // Reset the form submission state
+            setSubmitting(false);
           });
       }}
     >
@@ -54,11 +50,21 @@ const FoodDonationForm = () => (
         handleBlur,
         handleSubmit,
         isSubmitting,
-        /* and other goodies */
       }) => (
-        <form onSubmit={handleSubmit}>
-          <label>
-            description
+        <form className="address-entries" onSubmit={handleSubmit}>
+          <label className="form-field">
+            Address:
+            <input
+              type="text"
+              name="title"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.title}
+            />
+          </label>
+
+          <label className="form-field">
+            Address (line 2):
             <input
               type="text"
               name="description"
@@ -69,8 +75,8 @@ const FoodDonationForm = () => (
             {errors.description && touched.description && errors.description}
           </label>
 
-          <label>
-            Start Date:
+          <label className="form-field">
+            City:
             <input
               type="text"
               name="start_date"
@@ -81,8 +87,8 @@ const FoodDonationForm = () => (
             {errors.start_date && touched.start_date && errors.start_date}
           </label>
 
-          <label>
-            End Date:
+          <label className="form-field">
+            Province:
             <input
               type="text"
               name="end_date"
@@ -93,8 +99,8 @@ const FoodDonationForm = () => (
             {errors.end_date && touched.end_date && errors.end_date}
           </label>
 
-          <label>
-            Phone:
+          <label className="form-field">
+            Postal Code:
             <input
               type="text"
               name="phone"
@@ -105,8 +111,8 @@ const FoodDonationForm = () => (
             {errors.phone && touched.phone && errors.phone}
           </label>
 
-          <label>
-            Preferred Food:
+          <label className="form-field">
+            Country:
             <input
               type="text"
               name="preferred_food"
@@ -119,33 +125,11 @@ const FoodDonationForm = () => (
               errors.preferred_food}
           </label>
 
-          <label>
-            Allergies:
-            <input
-              type="text"
-              name="allergies"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.allergies}
-            />
-            {errors.allergies && touched.allergies && errors.allergies}
-          </label>
-
-          <label>
-            Target Amount in Grams:
-            <input
-              type="text"
-              name="target_amount_in_grams"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.target_amount_in_grams}
-            />
-            {errors.target_amount_in_grams &&
-              touched.target_amount_in_grams &&
-              errors.target_amount_in_grams}
-          </label>
-
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="submit-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Submit
           </button>
         </form>
@@ -154,4 +138,4 @@ const FoodDonationForm = () => (
   </div>
 );
 
-export default FoodDonationForm;
+export default AddressForm;

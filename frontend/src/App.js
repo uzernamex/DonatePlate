@@ -2,8 +2,7 @@ import "./App.css";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
-import FoodDonationForm from "./components/FoodDonationForm";
-import DisplaySingleDonationRequest from "./components/DisplaySingleDonationRequest"
+import FoodDonationForm from "./components/FoodDonationForm"
 import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
@@ -17,11 +16,14 @@ function App() {
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          
           <LogoutButton />
           <Profile />
           <FoodDonationForm/>
           <DisplaySingleDonationRequest/>
+          <div className="form-container">
+            <FoodDonationForm />
+            <AddressForm />
+          </div>
         </>
       )}
     </main>
