@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
@@ -8,7 +9,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const { isLoading, error, user } = useAuth0();
-  return (
+
+  // For the data submitted in the FoodDonationForm component
+  const [submittedData, setSubmittedData] = useState(null);
+  
+  const handleSubmitFoodDonation = (data) => {
+    setSubmittedData(data);
+  };
+
+     return (
     <main>
       <h1>Welcome to DonatePlate</h1>
 
@@ -20,6 +29,12 @@ function App() {
           <LogoutButton />
           <Profile />
           <div className="form-container">
+            
+            [submittedData ? (
+              <div>
+                <h2>Thank you for registering!</h2>
+              </div>
+            )]
             <FoodDonationForm />
             <AddressForm />
           </div>
