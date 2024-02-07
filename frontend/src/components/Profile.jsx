@@ -6,7 +6,6 @@ const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   useEffect(() => {
     if(user){
-      console.log("My User", user);
       fetch('http://localhost:8080/api/users/login', {
         method: "POST",
         body: JSON.stringify(user),
@@ -24,7 +23,7 @@ const Profile = () => {
   }, [user]);
   return (
     isAuthenticated && (
-      <article>
+      <article className="profile">
         {user?.picture && <img src={user.picture} alt={user?.name} />}
         <h2>{user?.name}</h2>
       </article>
