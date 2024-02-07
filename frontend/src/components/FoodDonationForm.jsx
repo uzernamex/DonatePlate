@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
+import "../styles/address.scss";
+import App from "../App";
 
 const FoodDonationForm = ({}) => {
   //var to track the state
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleFormSubmit = (values, { setSubmitting }) => {
+    try { console.log("Form sumitted with values:", values);
+    const response = await fetch('http://localhost:3000/donation-form-submitted', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values), 
+      });
+      if (!response.ok) {
+        throw new Error('Failed to sumit form');
+      }
+    setIsSubmitted(true);
+    } catch (error) {
+      console.error ('API call error:', error);
+    }
+    finally {
+    setSubmitting(false);
+  }};
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>
           <h1>Form Submission Received!</h1>
+
         </div>
       ) : (
         <>
@@ -24,6 +47,12 @@ const FoodDonationForm = ({}) => {
               preferred_food: "",
               allergies: "",
               target_amount_in_grams: "",
+              Address_1: "",
+              Address_2: "",
+              City: "",
+              Province: "",
+              PostalCode: "",
+              Country: "Canada",
             }}
             validate={(values) => {
               const errors = {};
@@ -32,29 +61,12 @@ const FoodDonationForm = ({}) => {
               } else if (!/[0-9]/i.test(values.phone)) {
                 errors.phone = "Invalid phone number";
               }
+              if (!values.PostalCode) {
+                errors.PostalCode = "Format = 'A1A 1A1";
+              }
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log("values:", values);
-              fetch("http://localhost:8080/api/food-donations", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log("Form submitted successfully!", data);
-                  setIsSubmitted(true);
-                })
-                .catch((error) => {
-                  console.error("Error submitting form:", error);
-                })
-                .finally(() => {
-                  setSubmitting(false);
-                });
-            }}
+            onSubmit={handleFormSubmit}
           >
             {({
               values,
@@ -165,6 +177,76 @@ const FoodDonationForm = ({}) => {
                   {errors.target_amount_in_grams &&
                     touched.target_amount_in_grams &&
                     errors.target_amount_in_grams}
+                </label>
+
+                <label className="form-field">
+                  Address:
+                  <input
+                    type="text"
+                    name="Address_1"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Address_1}
+                  />
+                </label>
+
+                <label className="form-field">
+                  Address (line 2):
+                  <input
+                    type="text"
+                    name="Address_2"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Address_2}
+                  />
+                </label>
+
+                <label className="form-field">
+                  City:
+                  <input
+                    type="text"
+                    name="city"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.City}
+                  />
+                </label>
+
+                <label className="form-field">
+                  Province:
+                  <input
+                    type="text"
+                    name="province"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Province}
+                  />
+                  {errors.Province && touched.Province && errors.Province}
+                </label>
+
+                <label className="form-field">
+                  Postal Code:
+                  <input
+                    type="text"
+                    name="postal_code"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Postal_code}
+                  />
+                  {errors.Postal_code &&
+                    touched.Postal_code &&
+                    errors.Postal_code}
+                </label>
+
+                <label className="form-field">
+                  Country:
+                  <input
+                    type="text"
+                    name="Country"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.Country}
+                  />
                 </label>
 
                 <button
