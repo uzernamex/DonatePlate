@@ -1,7 +1,7 @@
 .donation-form-container {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 150%;
   background-color: #fff7e6;
   border: solid 4px;
   border-radius: 14px;
@@ -10,19 +10,30 @@
   font-family: 'Urbanist', sans-serif;
   font-size: 20px;
   margin-right: 50px; 
+  align-items: flex-start;
+  
   
   h1 { 
     display: flex;
+    // justify-content: center;
+    // align-items: center;
     background-color: #ffdd99;
+    // border-radius: 7px; 
     font-weight: bold;
     font-family: 'Urbanist', sans-serif;
+    width: 99%;
+    padding: 16px;
+    padding-right: 0px;
+    margin-right: 0px; 
+    margin-left: 0.5px;   
   }
   .donation-entries {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  // width: 90%;
   margin-bottom: 10px;
-
+margin-left: 70px;;
 }
 .submit-button {
   align-items: center;
@@ -31,14 +42,14 @@
 
 }
 .form-field {
-  margin: 10px;   
-  align-items: left;
+  margin: 100px;   
+  // align-items: left;
  
 }
 
 .form-container {
   display: flex;
   flex-direction: row;
-
+  align-items: left;
  
 }
