@@ -8,31 +8,34 @@ const FoodDonationForm = ({}) => {
   //var to track the state
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleFormSubmit = (values, { setSubmitting }) => {
-    try { console.log("Form sumitted with values:", values);
-    const response = await fetch('http://localhost:3000/donation-form-submitted', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values), 
-      });
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    try {
+      console.log("Form sumitted with values:", values);
+      const response = await fetch(
+        "http://localhost:3000/donation-form-submitted",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
       if (!response.ok) {
-        throw new Error('Failed to sumit form');
+        throw new Error("Failed to sumit form");
       }
-    setIsSubmitted(true);
+      setIsSubmitted(true);
     } catch (error) {
-      console.error ('API call error:', error);
+      console.error("API call error:", error);
+    } finally {
+      setSubmitting(false);
     }
-    finally {
-    setSubmitting(false);
-  }};
+  };
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>
           <h1>Form Submission Received!</h1>
-
         </div>
       ) : (
         <>
