@@ -20,7 +20,6 @@ function App() {
         <>
           <LogoutButton />
           <Profile />
-          <FoodDonationForm/>
           <DisplaySingleDonationRequest/>
           <div className="form-container">
             <FoodDonationForm />
