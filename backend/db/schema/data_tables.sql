@@ -9,12 +9,14 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS food_donations CASCADE;
 CREATE TABLE food_donations (
   id SERIAL PRIMARY KEY NOT NULL,
+  title TEXT NOT NULL,
   description TEXT NOT NULL,
   start_date DATE,
   end_date DATE,
   phone BIGINT,
   preferred_food VARCHAR(255),
-  allergies TEXT, target_amount_in_grams BIGINT
+  allergies TEXT, target_amount_in_grams BIGINT,
+  user_id INTEGER REFERENCES users(id)
  );
 
 DROP TABLE IF EXISTS address CASCADE;
@@ -25,7 +27,8 @@ CREATE TABLE address (
   city VARCHAR(255),
   province VARCHAR(255),
   postal_code VARCHAR(7),
-  country VARCHAR(255) default 'Canada'
+  country VARCHAR(255) default 'Canada',
+  food_donation_id INTEGER REFERENCES food_donations(id)
   );
 
 DROP TABLE IF EXISTS messages CASCADE;
@@ -33,5 +36,6 @@ CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
   email VARCHAR(255),
   messages TEXT,
-  created_at DATE
+  created_at DATE,
+  food_donation_id INTEGER REFERENCES food_donations(id)
   );
