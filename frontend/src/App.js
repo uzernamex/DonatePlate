@@ -12,7 +12,6 @@ function App() {
   return (
     <main>
       <h1>Welcome to DonatePlate</h1>
-
       {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
