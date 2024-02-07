@@ -14,7 +14,7 @@ const DisplaySingleDonationRequest = () => {
           return response.json();
         })
         .then((data) => {
-          setDonationData(data);
+          setDonationData(data ? data[0]:{});
         })
         .catch((error) => {
           console.error("Error fetching donation data:", error);
@@ -34,15 +34,16 @@ const DisplaySingleDonationRequest = () => {
     <div className="display-single-donation-request-container"> {/* Apply class here */}
       {donationData ? (
         <div>
-           <h1>{donationData.title}</h1>
-          <p>Description: {donationData.description}</p>
-          <p>Start Date: {formatDate(donationData.start_date)}</p>
-          <p>End Date: {formatDate(donationData.end_date)}</p>
-          <p>Contact Number: {donationData.phone}</p>
-          <p>Preferred Food: {donationData.preferred_food}</p>
-          <p>Allergies: {donationData.allergies}</p>
-          <p>Targeted Amount in Grams: {donationData.target_amount_in_grams}</p>
-        </div>
+      <h1>{donationData.title}</h1>
+      <p className="label">Description: {donationData.description}</p>
+      <p className="label">Start Date: {formatDate(donationData.start_date)}</p>
+      <p className="label">End Date: {formatDate(donationData.end_date)}</p>
+      <p className="label">Contact Number: {donationData.phone}</p>
+      <p className="label">Preferred Food: {donationData.preferred_food}</p>
+      <p className="label">Allergies: {donationData.allergies}</p>
+      <p className="label">Targeted Amount in Grams: {donationData.target_amount_in_grams}</p>
+      <p className="label">Address: {donationData.address_1} {donationData.address_2}, {donationData.city}, {donationData.province}, {donationData.postal_code}</p>
+    </div>
       ) : (
         <p>Loading...</p>
       )}
