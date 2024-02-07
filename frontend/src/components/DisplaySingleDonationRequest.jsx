@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/DisplaySingleDonationRequest.scss"
 
 const DisplaySingleDonationRequest = () => {
   const [donationData, setDonationData] = useState(null);
@@ -30,10 +31,10 @@ const DisplaySingleDonationRequest = () => {
   };
 
   return (
-    <div>
-      <h1>Title</h1>
+    <div className="display-single-donation-request-container"> {/* Apply class here */}
       {donationData ? (
         <div>
+           <h1>{donationData.title}</h1>
           <p>Description: {donationData.description}</p>
           <p>Start Date: {formatDate(donationData.start_date)}</p>
           <p>End Date: {formatDate(donationData.end_date)}</p>
@@ -48,5 +49,6 @@ const DisplaySingleDonationRequest = () => {
     </div>
   );
 };
+
 
 export default DisplaySingleDonationRequest;
