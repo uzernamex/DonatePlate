@@ -12,8 +12,8 @@ VALUES ('Chruch Donation','Non-perishable foods ONLY', '2024-06-01', '2024-07-02
 
 -- Address
 INSERT INTO address (address_1, address_2, city, province, postal_code, food_donation_id)
-VALUES ('Street Address 1', 'Street Address 2', 'City', ARRAY['Province1', 'Province2'], '12345',1),
-       ('Another Street 1', 'Another Street 2', 'Another City', ARRAY['Province3'], '54321',1);
+VALUES ('ABC street', '', 'Surrey', 'British Columbia', 'ABC 1F2',1),
+       ('XYZ Street', '','London', 'Ontario', 'CDE 1J6',1);
 
 -- Messages
 INSERT INTO messages (email, messages, created_at, food_donation_id)
