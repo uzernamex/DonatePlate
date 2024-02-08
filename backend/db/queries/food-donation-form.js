@@ -1,35 +1,20 @@
-const db = require('../connection');
+// const db = require("../connection");
 
-const savedDonationForm = async (subId) => {
-  try {
-    const { rows } = await db.query('SELECT * FROM users WHERE sub_id = $1', [subId]);
-    return rows[0];
-  } catch (error) {
-    console.error(`Error executing query to get user with subId ${subId}:`, error);
-    throw error;
-  }
-};
+// const savedDonationForm = async (subId) => {
+//   try {
+//     const { rows } = await db.query("SELECT * FROM users WHERE sub_id = $1", [
+//       subId,
+//     ]);
+//     return rows[0];
+//   } catch (error) {
+//     console.error(
+//       `Error executing query to get user with subId ${subId}:`,
+//       error
+//     );
+//     throw error;
+//   }
+// };
 
-const insertUser = async (user) => {
-  try {
-    const keys = Object.keys(user);
-    const name = user.given_name || user.name;
-    const email = user.email || "no email";
-    const subid = user.sub;
-
-    console.log(`Executing query to insert user:`, user);
-    const query = `INSERT INTO users(name,email,sub_id) VALUES($1, $2, $3) RETURNING *`;
-
-    const { rows } = await db.query(query, [name,email,subid]);
-
-    return rows[0];
-  } catch (error) {
-    console.error(`Error executing query to insert user:`, error);
-    throw error;
-  }
-};
-
-module.exports = {
-  getUserBySubId,
-  insertUser,
-};
+// module.exports = {
+// savedDonationForm
+// };
