@@ -1,18 +1,35 @@
-const express = require("express");
-const router = express.Router();
-// const { savedDonationForm } = require("../db/queries/data_queries");
-const { savedDonationForm } = require("./data_queries");
+const db = require('../connection');
 
-const data_queries = require("/../db/queries/")
-router.post("/food-donation-form", async (req, res) => {
-  const formData = req.body;
+const savedDonationForm = async (subId) => {
   try {
-    await userQueries.insertUser(formData);
-    res.status(200).json({ message: "Form data has been recorded" });
+    const { rows } = await db.query('SELECT * FROM users WHERE sub_id = $1', [subId]);
+    return rows[0];
   } catch (error) {
-    console.error("Error saving form data:", error);
-    res.status(500).json({ error: "Error saving form data" });
+    console.error(`Error executing query to get user with subId ${subId}:`, error);
+    throw error;
   }
-});
+};
 
-module.exports = router;
+const insertUser = async (user) => {
+  try {
+    const keys = Object.keys(user);
+    const name = user.given_name || user.name;
+    const email = user.email || "no email";
+    const subid = user.sub;
+
+    console.log(`Executing query to insert user:`, user);
+    const query = `INSERT INTO users(name,email,sub_id) VALUES($1, $2, $3) RETURNING *`;
+
+    const { rows } = await db.query(query, [name,email,subid]);
+
+    return rows[0];
+  } catch (error) {
+    console.error(`Error executing query to insert user:`, error);
+    throw error;
+  }
+};
+
+module.exports = {
+  getUserBySubId,
+  insertUser,
+};
