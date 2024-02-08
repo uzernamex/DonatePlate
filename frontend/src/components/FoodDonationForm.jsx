@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-import App from "../App";
+// import data_queries from '../../../../backend/db/queries/data_queries';
 
 const FoodDonationForm = ({}) => {
   //var to track the state
@@ -11,26 +11,15 @@ const FoodDonationForm = ({}) => {
   const handleFormSubmit = async (values, { setSubmitting }) => {
     try {
       console.log("Form sumitted with values:", values);
-      const response = await fetch(
-        "http://localhost:3000/donation-form-submitted",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to sumit form");
-      }
+      await savedDonationForm(values);
       setIsSubmitted(true);
     } catch (error) {
-      console.error("API call error:", error);
+      console.error("Error saving form data:", error);
     } finally {
       setSubmitting(false);
     }
   };
+
   return (
     <div className="donation-form-container">
       {isSubmitted ? (

@@ -56,7 +56,7 @@ app.use("/api/users", userApiRoutes);
 app.use("/users", usersRoutes);
 
 app.use("/api/food-donations", foodDonationRoutes);
-app.use("/api/users", userApiRoutes);
+
 app.use("/api/donation", singleDonationApiRoutes);
 
 app.get("/", (req, res) => {
