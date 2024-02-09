@@ -47,6 +47,7 @@ const userApiRoutes = require("./routes/users-api");
 const usersRoutes = require("./routes/users");
 const foodDonationRoutes = require("./routes/food_donation_form");
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
+const insertMessageAPiRoutes =  require("./routes/insert-message-api");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -58,6 +59,7 @@ app.use("/users", usersRoutes);
 app.use("/api/food-donations", foodDonationRoutes);
 app.use("/api/users", userApiRoutes);
 app.use("/api/donation", singleDonationApiRoutes);
+app.use("/api/messages", insertMessageAPiRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
