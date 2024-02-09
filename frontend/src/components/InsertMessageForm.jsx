@@ -8,7 +8,7 @@ const InsertMessageForm = () => {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
-    fetch("http://localhost:8080/api/messages", {
+    fetch("http://localhost:8080/api/insert-message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
