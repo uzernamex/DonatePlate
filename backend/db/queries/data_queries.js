@@ -25,7 +25,7 @@ const getMessages = () => {
   });
 };
 
-const saveFoodDonation = (formData) => {
+const saveFoodDonation = async (formData) => {
   const {
     title,
     description,
@@ -43,15 +43,11 @@ const saveFoodDonation = (formData) => {
     Country,
   } = formData;
 
+  const user_id = 1; //currently keeping as static; want to make this dynamic later on.
   const query = `
-    INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, Address_1, Address_2, City, Province, PostalCode, Country)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+    INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
  RETURNING *;`;
-  // make some return call
-
-  // INSERT INTO table1(column1, column2, …)
-  // VALUES (value1, value2, …)
-  //
 
   const values = [
     title,
@@ -62,34 +58,26 @@ const saveFoodDonation = (formData) => {
     preferred_food,
     allergies,
     target_amount_in_grams,
-    Address_1,
-    Address_2,
-    City,
-    Province,
-    PostalCode,
-    Country,
+    user_id,
   ];
-
 
   try {
     const result = await db.query(query, values);
-    return result.rows[0]; // Return the inserted row if successful
+/////////const////////////////////////////
+////////
+
+    return result.rows[0];
   } catch (error) {
-    console.error('Error saving food donation:', error);
-    throw error; // Re-throw the error to be handled by the caller
+    console.error("Error saving food donation:", error);
+    throw error;
   }
 };
 
 module.exports = {
   saveFoodDonation,
-};
-//   return db.query(query, values);
-// };
 
-// module.exports = {
-//   getUsers,
-//   // getAddress,
-//   getMessages,
-//   getFoodDonations,
-//   saveFoodDonation,
-// };
+  getUsers,
+  // getAddress,
+  getMessages,
+  getFoodDonations,
+};

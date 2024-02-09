@@ -7,24 +7,24 @@ const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
 
-  useEffect(() => {
-    const fetchDonations = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/api/food-donation-form"
-        );
-        if (!response.ok) {
-          throw new Error(`Error retrieving data: ${response.status}`);
-        }
-        const data = await response.json();
-        setSubmittedData(data ? data[0] : {});
-      } catch (error) {
-        console.error("Error fetching donation data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchDonations = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://localhost:8080/api/food-donation-form"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`Error retrieving data: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       setSubmittedData(data ? data[0] : {});
+  //     } catch (error) {
+  //       console.error("Error fetching donation data:", error);
+  //     }
+  //   };
 
-    fetchDonations();
-  }, []); // Empty dependency array to ensure useEffect runs only once on component mount
+  //   fetchDonations();
+  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
 
   return (
     <div className="donation-form-container">
@@ -33,7 +33,7 @@ const FoodDonationForm = () => {
           <h1>Form Submission Received!</h1>
           <div className="submitted-data-new-donation">
             <h2>New Event:</h2>
-            <p>Title: {submittedData.title}</p>
+            {/* <p>Title: {submittedData.title}</p> */}
             {/* Display other submitted data as needed */}
           </div>
         </div>
@@ -78,13 +78,19 @@ const FoodDonationForm = () => {
             onSubmit={async (values, { setSubmitting }) => {
               try {
                 // Send POST request to backend endpoint /food-donations
-                const response = await fetch("/api/food-donations", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(values),
-                });
+                console.log("values:", values);
+                const response = await fetch(
+                  "http://localhost:8080/api/food-donations",
+
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body:
+                    JSON.stringify(values),
+                  }
+                );
 
                 if (response.ok) {
                   const data = await response.json();
