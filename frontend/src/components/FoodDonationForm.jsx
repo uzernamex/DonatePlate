@@ -2,29 +2,86 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
+// import { saveFoodDonation, saveAddress } from "/..data_queries.js";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
+  const [addresses, setAddresses] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8080/api/food-donation-form")
+      .then((response) => response.json())
+      .then((data) => setAddresses(data))
+      .catch((error) => console.error("Error fetching addresses", error));
+  });
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    start_date: "",
+    end_date: "",
+    phone: "",
+    preferred_food: "",
+    allergies: "",
+    target_amount_in_grams: "",
+    Address_1: "",
+    Address_2: "",
+    city: "",
+    province: "",
+    postal_code: "",
+    Country: "Canada",
+  });
 
-  // useEffect(() => {
-  //   const fetchDonations = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://localhost:8080/api/food-donation-form"
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(`Error retrieving data: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       setSubmittedData(data ? data[0] : {});
-  //     } catch (error) {
-  //       console.error("Error fetching donation data:", error);
-  //     }
-  //   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const foodDonationResponse = await fetch(
+        "http://localhost:8080/api/food-donations",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+      if (!foodDonationResponse.ok) {
+        throw new Error("Failed to save food donation");
+      }
 
-  //   fetchDonations();
-  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
+      const foodDonationData = await foodDonationResponse.json();
+      console.log("Food donation saved:", foodDonationData);
+
+      // Add logic to handle address data
+      const addressResponse = await fetch(
+        "http://localhost:8080/api/addresses",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+            food_donation_id: foodDonationData.id,
+          }),
+        }
+      );
+      if (!addressResponse.ok) {
+        throw new Error("Failed to save address");
+      }
+
+      const addressData = await addressResponse.json();
+      console.log("Address saved:", addressData);
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error saving form data:", error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="donation-form-container">
@@ -87,15 +144,14 @@ const FoodDonationForm = () => {
                     headers: {
                       "Content-Type": "application/json",
                     },
-                    body:
-                    JSON.stringify(values),
+                    body: JSON.stringify(values),
                   }
                 );
 
                 if (response.ok) {
                   const data = await response.json();
                   console.log(data);
-                  setIsSubmitted(true); // Set form submission status to true
+                  setIsSubmitted(true);
                 } else {
                   throw new Error("Failed to save form data");
                 }

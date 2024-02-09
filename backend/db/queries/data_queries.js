@@ -1,3 +1,4 @@
+// import { saveFoodDonation, saveAddress } from "../data_queries";
 
 const db = require("../connection");
 
@@ -6,19 +7,16 @@ const getUsers = () => {
     return data.rows;
   });
 };
-
 const getFoodDonations = () => {
   return db.query("SELECT * FROM food_donations;").then((data) => {
     return data.rows;
   });
 };
-
 const getAddress = () => {
   return db.query("SELECT * FROM address;").then((data) => {
     return data.rows;
   });
 };
-
 const getMessages = () => {
   return db.query("SELECT * FROM messages;").then((data) => {
     return data.rows;
@@ -101,6 +99,7 @@ const saveAddress = async (formData) => {
 
 module.exports = {
   saveFoodDonation,
+  saveAddress,
   getUsers,
   getAddress,
   getMessages,
