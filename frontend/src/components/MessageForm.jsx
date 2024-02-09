@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const MessageForm = () => {
+  const [submissionStatus, setSubmissionStatus] = useState(null);
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -21,10 +23,12 @@ const MessageForm = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        resetForm(); //reset form to clear the content
+        setSubmissionStatus("success"); 
+        resetForm(); // Reset form to clear the content
       })
       .catch((error) => {
         console.error("Error inserting message:", error);
+        setSubmissionStatus("error"); 
       })
       .finally(() => {
         setSubmitting(false);
@@ -76,6 +80,12 @@ const MessageForm = () => {
           </button>
         </Form>
       </Formik>
+      {submissionStatus === "success" && (
+        <p>Thank you for contacting us, We will get back to you soon!</p>
+      )}
+      {submissionStatus === "error" && (
+        <p>Error submitting message. Please try again later.</p>
+      )}
     </div>
   );
 };
