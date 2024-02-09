@@ -1,41 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-import App from "../App";
 
-const FoodDonationForm = ({}) => {
-  //var to track the state
+const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
-    try {
-      console.log("Form sumitted with values:", values);
-      const response = await fetch(
-        "http://localhost:3000/donation-form-submitted",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to sumit form");
-      }
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error("API call error:", error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  // useEffect(() => {
+  //   const fetchDonations = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://localhost:8080/api/food-donation-form"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`Error retrieving data: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       setSubmittedData(data ? data[0] : {});
+  //     } catch (error) {
+  //       console.error("Error fetching donation data:", error);
+  //     }
+  //   };
+
+  //   fetchDonations();
+  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
+
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>
           <h1>Form Submission Received!</h1>
+          <div className="submitted-data-new-donation">
+            <h2>New Event:</h2>
+            {/* <p>Title: {submittedData.title}</p> */}
+            {/* Display other submitted data as needed */}
+          </div>
         </div>
       ) : (
         <>
@@ -52,9 +52,9 @@ const FoodDonationForm = ({}) => {
               target_amount_in_grams: "",
               Address_1: "",
               Address_2: "",
-              City: "",
-              Province: "",
-              PostalCode: "",
+              city: "",
+              province: "",
+              postal_code: "",
               Country: "Canada",
             }}
             validate={(values) => {
@@ -64,12 +64,47 @@ const FoodDonationForm = ({}) => {
               } else if (!/[0-9]/i.test(values.phone)) {
                 errors.phone = "Invalid phone number";
               }
-              if (!values.PostalCode) {
-                errors.PostalCode = "Format = 'A1A 1A1";
+              if (
+                !values.postal_code ||
+                !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(
+                  values.postal_code
+                )
+              ) {
+                errors.postal_code =
+                  "Invalid postal code format (e.g., A1A 1A1)";
               }
               return errors;
             }}
-            onSubmit={handleFormSubmit}
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                // Send POST request to backend endpoint /food-donations
+                console.log("values:", values);
+                const response = await fetch(
+                  "http://localhost:8080/api/food-donations",
+
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body:
+                    JSON.stringify(values),
+                  }
+                );
+
+                if (response.ok) {
+                  const data = await response.json();
+                  console.log(data);
+                  setIsSubmitted(true); // Set form submission status to true
+                } else {
+                  throw new Error("Failed to save form data");
+                }
+              } catch (error) {
+                console.error("Error saving form data:", error);
+              } finally {
+                setSubmitting(false);
+              }
+            }}
           >
             {({
               values,
@@ -90,6 +125,7 @@ const FoodDonationForm = ({}) => {
                     onBlur={handleBlur}
                     value={values.title}
                   />
+                  {errors.title && touched.title && errors.title}
                 </label>
 
                 <label className="form-field">
