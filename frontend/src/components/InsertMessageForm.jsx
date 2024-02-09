@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import "../styles/InsertMessage.scss";
 
-const MessageForm = () => {
+const InsertMessageForm = () => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
@@ -23,12 +24,12 @@ const MessageForm = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        setSubmissionStatus("success"); 
+        setSubmissionStatus("success");
         resetForm(); // Reset form to clear the content
       })
       .catch((error) => {
         console.error("Error inserting message:", error);
-        setSubmissionStatus("error"); 
+        setSubmissionStatus("error");
       })
       .finally(() => {
         setSubmitting(false);
@@ -36,7 +37,7 @@ const MessageForm = () => {
   };
 
   return (
-    <div>
+    <div className="MessageForm">
       <h1>Contact Us</h1>
       <Formik
         initialValues={{ name: "", email: "", message: "" }}
@@ -63,31 +64,33 @@ const MessageForm = () => {
           <div>
             <label htmlFor="name">Name</label>
             <Field type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
+            <ErrorMessage name="name" component="div" className="error" />
           </div>
           <div>
             <label htmlFor="email">Email</label>
             <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
+            <ErrorMessage name="email" component="div" className="error" />
           </div>
           <div>
             <label htmlFor="message">Message</label>
             <Field as="textarea" name="message" />
-            <ErrorMessage name="message" component="div" />
+            <ErrorMessage name="message" component="div" className="error" />
           </div>
-          <button type="submit">
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </Form>
       </Formik>
       {submissionStatus === "success" && (
-        <p>Thank you for contacting us, We will get back to you soon!</p>
+        <p className="success-message">
+          Thank you for contacting us, We will get back to you soon!
+        </p>
       )}
       {submissionStatus === "error" && (
-        <p>Error submitting message. Please try again later.</p>
+        <p className="error-message">
+          Error submitting message. Please try again later.
+        </p>
       )}
     </div>
   );
 };
 
-export default MessageForm;
+export default InsertMessageForm;
