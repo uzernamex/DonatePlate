@@ -51,6 +51,8 @@ const userApiRoutes = require("./routes/users-api");
 const usersRoutes = require("./routes/users");
 const foodDonationRoutes = require("./routes/food-donations");
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
+const insertMessageAPiRoutes =  require("./routes/insert-message-api");
+const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
 
 const saveFoodDonation = require("./routes/food-donations");
 app.use("/api/food-donation-form", saveFoodDonation);
@@ -65,6 +67,9 @@ app.use("/users", usersRoutes);
 app.use("/api/food-donations", foodDonationRoutes);
 
 app.use("/api/donation", singleDonationApiRoutes);
+app.use("/api/insert-message", insertMessageAPiRoutes);
+app.use("/api/display-messages", displayAllMessagesAPiRoutes);
+
 
 
 

@@ -4,6 +4,8 @@ import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
 import FoodDonationForm from "./components/FoodDonationForm";
 import DisplaySingleDonationRequest from "./components/DisplaySingleDonationRequest";
+import InsertMessageForm from "./components/InsertMessageForm";
+import DisplayAllMessages from "./components/DisplayAllMessages";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -20,6 +22,8 @@ function App() {
           <LogoutButton />
           <Profile />
           <DisplaySingleDonationRequest />
+          <InsertMessageForm />
+          <DisplayAllMessages />
           <div className="form-container">
             <FoodDonationForm />
           </div>

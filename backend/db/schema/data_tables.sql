@@ -34,8 +34,9 @@ CREATE TABLE address (
 DROP TABLE IF EXISTS messages CASCADE;
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
   email VARCHAR(255),
-  messages TEXT,
+  message TEXT,
   created_at DATE,
   food_donation_id INTEGER REFERENCES food_donations(id)
   );
