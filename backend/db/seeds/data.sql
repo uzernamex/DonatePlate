@@ -16,6 +16,6 @@ VALUES ('ABC street', '', 'Surrey', 'British Columbia', 'ABC 1F2',1),
        ('XYZ Street', '','London', 'Ontario', 'CDE 1J6',1);
 
 -- Messages
-INSERT INTO messages (email, messages, created_at, food_donation_id)
-VALUES ('abcdefg@hotmail.com', 'This is a message.', '2024-01-29',1),
-       ('sesamestreetbakedgoods@yahoo.ca', 'Another message here.', '2024-01-30',1);
+INSERT INTO messages (name, email, message, created_at, food_donation_id)
+VALUES ('John Smith','abcdefg@hotmail.com', 'This is a message.', '2024-01-29',1),
+       ('Bob Johnson','sesamestreetbakedgoods@yahoo.ca', 'Another message here.', '2024-01-30',1);
