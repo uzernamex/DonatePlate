@@ -31,7 +31,7 @@ const DisplaySingleDonationRequest = () => {
   };
 
   return (
-    <div className="display-single-donation-request-container"> {/* Apply class here */}
+    <div className="display-single-donation-request-container"> 
       {donationData ? (
         <div>
       <h1>{donationData.title}</h1>
