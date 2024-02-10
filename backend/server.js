@@ -55,7 +55,10 @@ const insertMessageAPiRoutes =  require("./routes/insert-message-api");
 const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
 
 const saveFoodDonation = require("./routes/food-donations");
-app.use("/api/food-donation-form", saveFoodDonation);
+// app.use("/api/food-donation-form", saveFoodDonation);
+
+app.use("/api/food-donations", saveFoodDonation);
+
 const { getAllDonations } = require("./db/queries/data_queries");
 
 

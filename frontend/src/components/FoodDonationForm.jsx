@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
+import DonationsList from "./DonationsList";
 
-const FoodDonationForm = () => {
+const FoodDonationForm = ({ fetchDonations }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
 
@@ -87,15 +88,15 @@ const FoodDonationForm = () => {
                     headers: {
                       "Content-Type": "application/json",
                     },
-                    body:
-                    JSON.stringify(values),
+                    body: JSON.stringify(values),
                   }
                 );
 
                 if (response.ok) {
                   const data = await response.json();
                   console.log(data);
-                  setIsSubmitted(true); // Set form submission status to true
+                  setIsSubmitted(true); 
+                  fetchDonations();
                 } else {
                   throw new Error("Failed to save form data");
                 }

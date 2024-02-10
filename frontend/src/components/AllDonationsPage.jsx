@@ -6,7 +6,7 @@ const DonationsListPage = () => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/donations");
+        const response = await fetch("http://localhost:8080/api/food-donations");
         if (!response.ok) {
           throw new Error(`Error retrieving data: ${response.status}`);
         }

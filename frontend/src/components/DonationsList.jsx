@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 const DonationsList = () => {
   const [donations, setDonations] = useState([]);
 
+  // useEffect(() => {
+  //   fetchDonations();
+  // }, []);
+
   useEffect(() => {
     const fetchDonations = async () => {
       try {
@@ -19,6 +23,12 @@ const DonationsList = () => {
 
     fetchDonations();
   }, []);
+
+  // const handleFormSubmit = async () => {
+  //   // Logic for handling form submission goes here
+  //   // After successful submission, fetch the updated list of donations
+  //   await fetchDonations();
+  // };
 
   return (
     <div>
