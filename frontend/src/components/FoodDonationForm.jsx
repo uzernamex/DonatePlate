@@ -6,27 +6,6 @@ import DonationsList from "./DonationsList";
 
 const FoodDonationForm = ({ fetchDonations }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchDonations = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://localhost:8080/api/food-donation-form"
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(`Error retrieving data: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       setSubmittedData(data ? data[0] : {});
-  //     } catch (error) {
-  //       console.error("Error fetching donation data:", error);
-  //     }
-  //   };
-
-  //   fetchDonations();
-  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
-
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
@@ -76,13 +55,12 @@ const FoodDonationForm = ({ fetchDonations }) => {
               }
               return errors;
             }}
+            // onSubmit={async (values, { setSubmitting, resetForm }) => {
+
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                // Send POST request to backend endpoint /food-donations
-                console.log("values:", values);
                 const response = await fetch(
                   "http://localhost:8080/api/food-donations",
-
                   {
                     method: "POST",
                     headers: {
@@ -94,7 +72,6 @@ const FoodDonationForm = ({ fetchDonations }) => {
 
                 if (response.ok) {
                   const data = await response.json();
-                  console.log(data);
                   setIsSubmitted(true); 
                   fetchDonations();
                 } else {

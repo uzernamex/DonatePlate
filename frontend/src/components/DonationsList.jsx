@@ -24,12 +24,6 @@ const DonationsList = () => {
     fetchDonations();
   }, []);
 
-  // const handleFormSubmit = async () => {
-  //   // Logic for handling form submission goes here
-  //   // After successful submission, fetch the updated list of donations
-  //   await fetchDonations();
-  // };
-
   return (
     <div>
       <h1>All Donations</h1>
