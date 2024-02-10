@@ -56,6 +56,9 @@ const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
 
 const saveFoodDonation = require("./routes/food-donations");
 app.use("/api/food-donation-form", saveFoodDonation);
+const { getAllDonations } = require("./db/queries/data_queries");
+
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -75,6 +78,16 @@ app.use("/api/display-messages", displayAllMessagesAPiRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/api/donations", async (req, res) => {
+  try {
+    const donations = await getAllDonations();
+    res.json(donations);
+  } catch (error) {
+    console.error("Error fetching donations:", error);
+    res.status(500).json({ error: "Failed to fetch donations" });
+  }
 });
 
 app.listen(PORT, () => {
