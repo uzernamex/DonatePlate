@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// import "../styles/donation-list.scss";
+import "../styles/donation.scss";
 
 const DonationsList = () => {
   const [donations, setDonations] = useState([]);
@@ -25,15 +27,15 @@ const DonationsList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="donation-form-container">
       <h1>All Donations</h1>
-      <ul>
+      {/* <ul> */}
         {donations.map((donation) => (
           <li key={donation.id}>
             <strong>{donation.title}</strong> - {donation.description}
           </li>
         ))}
-      </ul>
+      {/* </ul> */}
     </div>
   );
 };

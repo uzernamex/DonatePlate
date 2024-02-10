@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-import DonationsList from "./DonationsList";
 
 const FoodDonationForm = ({ fetchDonations }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -72,7 +71,7 @@ const FoodDonationForm = ({ fetchDonations }) => {
 
                 if (response.ok) {
                   const data = await response.json();
-                  setIsSubmitted(true); 
+                  setIsSubmitted(true);
                   fetchDonations();
                 } else {
                   throw new Error("Failed to save form data");
