@@ -2,10 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-import DonationsList from "./DonationsList";
 
-const FoodDonationForm = ({ fetchDonations }) => {
+const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchDonations = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://localhost:8080/api/food-donation-form"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`Error retrieving data: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       setSubmittedData(data ? data[0] : {});
+  //     } catch (error) {
+  //       console.error("Error fetching donation data:", error);
+  //     }
+  //   };
+
+  //   fetchDonations();
+  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
+
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
@@ -55,25 +75,27 @@ const FoodDonationForm = ({ fetchDonations }) => {
               }
               return errors;
             }}
-            // onSubmit={async (values, { setSubmitting, resetForm }) => {
-
             onSubmit={async (values, { setSubmitting }) => {
               try {
+                // Send POST request to backend endpoint /food-donations
+                console.log("values:", values);
                 const response = await fetch(
                   "http://localhost:8080/api/food-donations",
+
                   {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(values),
+                    body:
+                    JSON.stringify(values),
                   }
                 );
 
                 if (response.ok) {
                   const data = await response.json();
-                  setIsSubmitted(true); 
-                  fetchDonations();
+                  console.log(data);
+                  setIsSubmitted(true); // Set form submission status to true
                 } else {
                   throw new Error("Failed to save form data");
                 }
