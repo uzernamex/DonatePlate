@@ -13,6 +13,12 @@ const getFoodDonations = () => {
   });
 };
 
+const getAllDonations = () => {
+  return db.query("SELECT * FROM food_donations;").then((data) => {
+    return data.rows;
+  });
+};
+
 // const getAddress = () => {
 //   return db.query("SELECT * FROM address;").then((data) => {
 //     return data.rows;
@@ -63,8 +69,8 @@ const saveFoodDonation = async (formData) => {
 
   try {
     const result = await db.query(query, values);
-/////////const////////////////////////////
-////////
+    /////////const////////////////////////////
+    ////////
 
     return result.rows[0];
   } catch (error) {
@@ -75,7 +81,7 @@ const saveFoodDonation = async (formData) => {
 
 module.exports = {
   saveFoodDonation,
-
+  getAllDonations,
   getUsers,
   // getAddress,
   getMessages,
