@@ -23,14 +23,14 @@ router.post("/", async (req, res) => {
 
     // const savedData = await saveFoodDonation(formData);
     // await saveFoodDonation(formData);
-    "form data:", formData;
+    console.log("form data:", formData);
 
     //save the data to food donation table
     //then return the food donation object
     // using the food donation id, save the rest of the inforation into the address table
 
     saveFoodDonation(formData).then((data) => {
-      "data:", data;
+      console.log("data:", data);
       res.status(200).json({ message: "Form data saved" });
     });
   } catch (error) {

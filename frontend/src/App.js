@@ -1,5 +1,4 @@
 import "./App.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
@@ -7,7 +6,8 @@ import FoodDonationForm from "./components/FoodDonationForm";
 import DisplaySingleDonationRequest from "./components/DisplaySingleDonationRequest";
 import InsertMessageForm from "./components/InsertMessageForm";
 import DisplayAllMessages from "./components/DisplayAllMessages";
-import DonationsList from "./components/DonationsList";
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const { isLoading, error, user } = useAuth0();
@@ -27,8 +27,6 @@ function App() {
           <div className="form-container">
             <FoodDonationForm />
           </div>
-          <DonationsList />
-          
         </>
       )}
     </main>
