@@ -4,7 +4,7 @@ import "../styles/InsertMessage.scss";
 
 const InsertMessageForm = () => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
-
+  const userId = window.sessionStorage.getItem("userId");
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -17,7 +17,7 @@ const InsertMessageForm = () => {
         name: values.name,
         email: values.email,
         message: values.message,
-        userId: 1,
+        userId: userId
       }),
     })
       .then((response) => {
