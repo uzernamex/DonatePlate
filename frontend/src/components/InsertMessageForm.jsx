@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../styles/InsertMessage.scss";
 
-const InsertMessageForm = () => {
+const InsertMessageForm = ({foodDonationId}) => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
-  const userId = window.sessionStorage.getItem("userId");
+  //const userId = window.sessionStorage.getItem("userId");
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -17,7 +17,9 @@ const InsertMessageForm = () => {
         name: values.name,
         email: values.email,
         message: values.message,
-        userId: userId
+        //userId: userId,
+        foodDonation: 1,
+        //replace with foodDonationId
       }),
     })
       .then((response) => {
