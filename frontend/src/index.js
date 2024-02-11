@@ -11,6 +11,7 @@ import Homepage from "./components/Homepage";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 const router = createBrowserRouter([
   {
     path: "/",
