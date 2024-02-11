@@ -4,12 +4,13 @@ const { getSingleDonationRequestById } = require('../db/queries/DisplaySingleDon
 
 
 router.get('/:id', (req, res) => {
-  const donationId = req.params.id;
-  if (!/^\d+$/.test(donationId)) {
+
+  const userId = req.params.id;
+  if (!/^\d+$/.test(userId)) {
     return res.status(400).json({ error: 'Invalid donation ID' });
   }
 
-  getSingleDonationRequestById(donationId)
+  getSingleDonationRequestById(userId)
     .then((donation) => {
       if (!donation) {
         return res.status(404).json({ error: 'Donation not found' });

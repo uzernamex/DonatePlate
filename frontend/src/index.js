@@ -4,9 +4,28 @@ import './index.css';
 import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import FoodDonationPage from './components/FoodDonationPage';
+
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/about",
+    element: <div>Welcome to my about page!!!</div>,
+  },
+  {
+    path: "/food-donation",
+    element: <FoodDonationPage />,
+  }
+]);
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
@@ -16,7 +35,7 @@ ReactDOM.render(
         redirect_uri: window.location.origin
     }}
     >
-      <App />
+      <RouterProvider router={router} />
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')

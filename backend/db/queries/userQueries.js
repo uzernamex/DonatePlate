@@ -3,7 +3,6 @@ const db = require('../connection');
 
 const getUserBySubId = async (subId) => {
   try {
-    console.log(`Executing query to get user with subId ${subId}`);
     const { rows } = await db.query('SELECT * FROM users WHERE sub_id = $1', [subId]);
     return rows[0];
   } catch (error) {
