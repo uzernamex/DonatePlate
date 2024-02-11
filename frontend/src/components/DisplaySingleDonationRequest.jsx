@@ -23,7 +23,7 @@ const DisplaySingleDonationRequest = ({ foodDonationId }) => {
     };
 
     fetchData();
-  }, [foodDonationId]);
+  }, []);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
