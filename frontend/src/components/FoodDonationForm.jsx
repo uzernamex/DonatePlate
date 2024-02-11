@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-// import { saveFoodDonation, saveAddress } from "/..data_queries.js";
+// import { saveFoodDonation } from "../../../backend/routes/data-queries2";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,10 +31,10 @@ const FoodDonationForm = () => {
     Country: "Canada",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const foodDonationResponse = await fetch(
@@ -51,10 +51,9 @@ const FoodDonationForm = () => {
         throw new Error("Failed to save food donation");
       }
 
-      const foodDonationData = await foodDonationResponse.json();
+      const foodDonationData = await foodDonationResponse.json(values);
       console.log("Food donation saved:", foodDonationData);
 
-      // Add logic to handle address data
       const addressResponse = await fetch(
         "http://localhost:8080/api/addresses",
         {
@@ -134,10 +133,9 @@ const FoodDonationForm = () => {
             }}
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                // Send POST request to backend endpoint /food-donations
-                console.log("values:", values);
                 const response = await fetch(
-                  "http://localhost:8080/api/food-donations",
+                  // "http://localhost:8080
+                  "/api/food-donations",
 
                   {
                     method: "POST",
