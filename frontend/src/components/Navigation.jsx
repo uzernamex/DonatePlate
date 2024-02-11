@@ -30,16 +30,16 @@ function Navigation({ user }) {
             </IconButton>
           </Box>
           {
-            user 
-            ? (<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button color='inherit' component={Link} to="/">Home</Button>
-            <Button color='inherit' component={Link} to="/all-messages">All Messages</Button>
-            <Button color='inherit' component={Link} to="/single-food-donation">All Donations</Button>
-            <Button color='inherit' component={Link} to="/food-donation-form">Start a Donation Drive</Button>
-          </Box>)
-            :(<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button color='inherit' component={Link} to="/">Home</Button>
-          </Box>)
+            user
+              ? (<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Button color='inherit' component={Link} to="/">Home</Button>
+                <Button color='inherit' component={Link} to="/all-messages">All Messages</Button>
+                <Button color='inherit' component={Link} to="/single-food-donation">All Donations</Button>
+                <Button color='inherit' component={Link} to="/food-donation-form">Start a Donation Drive</Button>
+              </Box>)
+              : (<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Button color='inherit' component={Link} to="/">Home</Button>
+              </Box>)
           }
           <Box>
             <LoginButton />
@@ -47,23 +47,23 @@ function Navigation({ user }) {
           <LogoutButton />
         </Toolbar>
         {
-        user
-        ? (<Menu open={Boolean(anchorNav)} onClose={closeMenu} anchorEl={anchorNav}>
-        <MenuList>
-          <MenuItem onClick={closeMenu} component={Link} to="/">Home</MenuItem>
-          <MenuItem onClick={closeMenu} component={Link} to="/all-messages">All Messages</MenuItem>
-          <MenuItem onClick={closeMenu} component={Link} to="/single-food-donation">All Donations</MenuItem>
-          <MenuItem onClick={closeMenu} component={Link} to="/food-donation-form">Start a Donation Drive</MenuItem>
-        </MenuList>
-      </Menu>)
-        :(<Menu open={Boolean(anchorNav)} onClose={closeMenu} anchorEl={anchorNav}>
-        <MenuList>
-          <MenuItem onClick={closeMenu} component={Link} to="/">Home</MenuItem>
-        </MenuList>
-      </Menu>)
-        
+          user
+            ? (<Menu open={Boolean(anchorNav)} onClose={closeMenu} anchorEl={anchorNav}>
+              <MenuList>
+                <MenuItem onClick={closeMenu} component={Link} to="/">Home</MenuItem>
+                <MenuItem onClick={closeMenu} component={Link} to="/all-messages">All Messages</MenuItem>
+                <MenuItem onClick={closeMenu} component={Link} to="/single-food-donation">All Donations</MenuItem>
+                <MenuItem onClick={closeMenu} component={Link} to="/food-donation-form">Start a Donation Drive</MenuItem>
+              </MenuList>
+            </Menu>)
+            : (<Menu open={Boolean(anchorNav)} onClose={closeMenu} anchorEl={anchorNav}>
+              <MenuList>
+                <MenuItem onClick={closeMenu} component={Link} to="/">Home</MenuItem>
+              </MenuList>
+            </Menu>)
+
         }
-        
+
       </AppBar>
       <Toolbar style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', textAlign: 'center', justifyContent: 'center', display: 'flex' }}>
         <Typography variant="body2" color="textSecondary">
