@@ -1,3 +1,5 @@
+import React from 'react';
+import { Button } from '@mui/material';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LogoutButton = () => {
@@ -9,11 +11,11 @@ const LogoutButton = () => {
 
   return (
     isAuthenticated && (
-      <button onClick={handleLogOut}>
+      <Button color="inherit" onClick={handleLogOut}>
         Sign Out
-      </button>
+      </Button>
     )
   )
 }
 
-export default LogoutButton
+export default LogoutButton;
