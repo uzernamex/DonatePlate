@@ -1,7 +1,7 @@
 // load .env data into process.env
 require("dotenv").config();
 
-// Web server config
+// Web server configuration
 
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
@@ -22,9 +22,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 app.use(cors());
+
 // // Add headers before the routes are defined
 app.use(function (req, res, next) {
-  // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   // Request methods you wish to allow
   res.setHeader(
@@ -47,7 +47,6 @@ app.use(function (req, res, next) {
 // Separated Routes for each Resource
 
 const userApiRoutes = require("./routes/users-api");
-// const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require("./routes/users");
 const foodDonationRoutes = require("./routes/food-donations");
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
@@ -57,9 +56,6 @@ const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
 const saveFoodDonation = require("./routes/food-donations");
 app.use("/api/food-donation-form", saveFoodDonation);
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/api/users", userApiRoutes);
 
 app.use("/users", usersRoutes);

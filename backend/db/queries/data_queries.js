@@ -25,7 +25,7 @@ const getMessages = () => {
   });
 };
 
-const saveFoodDonation = async (formData) => {
+const FoodDonation = async (formData) => {
   const {
     title,
     description,
@@ -63,8 +63,8 @@ const saveFoodDonation = async (formData) => {
 
   try {
     const result = await db.query(query, values);
-/////////const////////////////////////////
-////////
+    /////////const////////////////////////////
+    ////////
 
     return result.rows[0];
   } catch (error) {
@@ -74,7 +74,7 @@ const saveFoodDonation = async (formData) => {
 };
 
 module.exports = {
-  saveFoodDonation,
+  FoodDonation,
 
   getUsers,
   // getAddress,
