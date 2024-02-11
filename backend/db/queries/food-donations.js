@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
   try {
     const formData = req.body;
 
-    // const savedData = await saveFoodDonation(formData);
-    // await saveFoodDonation(formData);
+    const savedData = await saveFoodDonation(formData);
+    await saveFoodDonation(formData);
     console.log("form data:", formData);
 
     //save the data to food donation table

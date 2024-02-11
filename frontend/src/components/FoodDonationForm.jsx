@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-// import { saveFoodDonation } from "../../../backend/routes/data-queries2";
 
 const FoodDonationForm = ({ fetchDonations }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,7 +34,9 @@ const FoodDonationForm = ({ fetchDonations }) => {
   //   const { name, value } = e.target;
   //   setFormData({ ...formData, [name]: value });
   // };
-  const handleSubmit = async (values, { setSubmitting }) => {
+
+  // const handleSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values, { setSubmitting }) => {
     try {
       const foodDonationResponse = await fetch(
         "http://localhost:8080/api/food-donations",
@@ -131,8 +132,6 @@ const FoodDonationForm = ({ fetchDonations }) => {
               }
               return errors;
             }}
-            // onSubmit={async (values, { setSubmitting, resetForm }) => {
-
             onSubmit={async (values, { setSubmitting }) => {
               try {
                 const response = await fetch(
