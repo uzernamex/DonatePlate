@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "../styles/InsertMessage.scss";
+import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
-const InsertMessageForm = ({foodDonationId}) => {
+
+const InsertMessageForm = ({ foodDonationId }) => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
-  //const userId = window.sessionStorage.getItem("userId");
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -17,9 +18,8 @@ const InsertMessageForm = ({foodDonationId}) => {
         name: values.name,
         email: values.email,
         message: values.message,
-        //userId: userId,
         foodDonation: 1,
-        //replace with foodDonationId
+        //repalce 1 with foodDonationId
       }),
     })
       .then((response) => {
@@ -39,59 +39,87 @@ const InsertMessageForm = ({foodDonationId}) => {
   };
 
   return (
-    <div className="MessageForm">
-      <h1>Contact Us</h1>
-      <Formik
-        initialValues={{ name: "", email: "", message: "" }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.name) {
-            errors.name = "Required";
-          }
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          if (!values.message) {
-            errors.message = "Required";
-          }
-          return errors;
-        }}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div>
-            <label htmlFor="name">Name</label>
-            <Field type="text" name="name" />
-            <ErrorMessage name="name" component="div" className="error" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" className="error" />
-          </div>
-          <div>
-            <label htmlFor="message">Message</label>
-            <Field as="textarea" name="message" />
-            <ErrorMessage name="message" component="div" className="error" />
-          </div>
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
-      {submissionStatus === "success" && (
-        <p className="success-message">
+    <Container maxWidth="md" sx={{ overflowY: 'auto', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box p={4}>
+        <Typography variant="h2">Contact Us</Typography>
+        <Formik
+          initialValues={{ name: "", email: "", message: "" }}
+          validate={(values) => {
+            const errors = {};
+            if (!values.name) {
+              errors.name = "Required";
+            }
+            if (!values.email) {
+              errors.email = "Required";
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = "Invalid email address";
+            }
+            if (!values.message) {
+              errors.message = "Required";
+            }
+            return errors;
+          }}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <Box mb={2}>
+              <label htmlFor="name">Name</label>
+              <Field
+                as={TextField}
+                type="text"
+                name="name"
+                variant="outlined"
+                fullWidth
+              />
+              <ErrorMessage name="name" component="div" className="error" />
+            </Box>
+            <Box mb={2}>
+              <label htmlFor="email">Email</label>
+              <Field
+                as={TextField}
+                type="email"
+                name="email"
+                variant="outlined"
+                fullWidth
+              />
+              <ErrorMessage name="email" component="div" className="error" />
+            </Box>
+            <Box mb={2}>
+              <label htmlFor="message">Message</label>
+              <Field
+                as={TextField}
+                type="textarea"
+                name="message"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={4}
+              />
+              <ErrorMessage name="message" component="div" className="error" />
+            </Box>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </Form>
+        </Formik>
+        {submissionStatus === "success" && (
+          <Typography
+          variant="body1"
+          className="success-message"
+          sx={{ color: "green" }} // Change color to green for success message
+        >
           Thank you for contacting us, We will get back to you soon!
-        </p>
-      )}
-      {submissionStatus === "error" && (
-        <p className="error-message">
-          Error submitting message. Please try again later.
-        </p>
-      )}
-    </div>
+        </Typography>
+        )}
+        {submissionStatus === "error" && (
+          <Typography variant="body1" className="error-message">
+            Error submitting message. Please try again later.
+          </Typography>
+        )}
+      </Box>
+    </Container>
   );
 };
 

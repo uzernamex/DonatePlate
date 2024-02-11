@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem, MenuList, Button } from '@mui/material';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import MenuIcon from '@mui/icons-material/Menu';
-import LogoutButton from './LogoutButton'; // Import the LogoutButton component
-import LoginButton from './LoginButton'; // Import the LoginButton component
-
+import LogoutButton from './LogoutButton'; 
+import LoginButton from './LoginButton'; 
+import { Link } from 'react-router-dom';
 function Navigation() {
   const [anchorNav, setAnchorNav] = useState(null);
 
@@ -30,10 +30,10 @@ function Navigation() {
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button color='inherit'>Home</Button>
-            <Button color='inherit'>All Messages</Button>
-            <Button color='inherit'>All Donations</Button>
-            <Button color='inherit'>Start a Donation Drive</Button>
+          <Button color='inherit' component={Link} to="/">Home</Button>
+<Button color='inherit' component={Link} to="/all-messages">All Messages</Button>
+<Button color='inherit' component={Link} to="/single-food-donation">All Donations</Button>
+<Button color='inherit' component={Link} to="/food-donation-form">Start a Donation Drive</Button>
           </Box>
           <Box>
             <LoginButton />
@@ -42,10 +42,10 @@ function Navigation() {
         </Toolbar>
         <Menu open={Boolean(anchorNav)} onClose={closeMenu} anchorEl={anchorNav}>
           <MenuList>
-            <MenuItem>Home</MenuItem>
-            <MenuItem>All Messages</MenuItem>
-            <MenuItem>All Donations</MenuItem>
-            <MenuItem>Start a Donation Drive</MenuItem>
+          <MenuItem onClick={closeMenu} component={Link} to="/">Home</MenuItem>
+<MenuItem onClick={closeMenu} component={Link} to="/all-messages">All Messages</MenuItem>
+<MenuItem onClick={closeMenu} component={Link} to="/single-food-donation">All Donations</MenuItem>
+<MenuItem onClick={closeMenu} component={Link} to="/food-donation-form">Start a Donation Drive</MenuItem>
           </MenuList>
         </Menu>
       </AppBar>
