@@ -9,7 +9,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import FoodDonationPage from './components/FoodDonationPage';
-import Homepage from './components/Homepage';
 import FoodDonationForm from './components/FoodDonationForm';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -21,10 +20,6 @@ const router = createBrowserRouter([
     element: <App />,
   },
   
-  {
-    path: "/home",
-    element: <Homepage />,
-  },
 
   {
     path: "/about",
