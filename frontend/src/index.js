@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import FoodDonationPage from './components/FoodDonationPage';
 import FoodDonationForm from './components/FoodDonationForm';
+import DisplayAllMessages from './components/DisplayAllMessages';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -22,11 +23,11 @@ const router = createBrowserRouter([
   
 
   {
-    path: "/about",
-    element: <div>Welcome to my about page!!!</div>,
+    path: "/all-messages",
+    element: <DisplayAllMessages />,
   },
   {
-    path: "/food-donation",
+    path: "/single-food-donation",
     element: <FoodDonationPage />,
   },
 

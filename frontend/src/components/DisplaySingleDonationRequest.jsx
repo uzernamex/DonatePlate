@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../styles/DisplaySingleDonationRequest.scss"
+import { Typography, CircularProgress, Container, Box } from "@mui/material";
 
-const DisplaySingleDonationRequest = ({foodDonationId}) => {
+
+const DisplaySingleDonationRequest = ({ foodDonationId }) => {
   const [donationData, setDonationData] = useState(null);
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://localhost:8080/api/donation/1") 
-      //replace 1 with foodDonationId
+      fetch(`http://localhost:8080/api/donation/1`) // replace 1 with foodDonationId
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -15,7 +15,7 @@ const DisplaySingleDonationRequest = ({foodDonationId}) => {
           return response.json();
         })
         .then((data) => {
-          setDonationData(data ? data[0]:{});
+          setDonationData(data ? data[0] : {});
         })
         .catch((error) => {
           console.error("Error fetching donation data:", error);
@@ -23,34 +23,54 @@ const DisplaySingleDonationRequest = ({foodDonationId}) => {
     };
 
     fetchData();
-  }, []);
+  }, [foodDonationId]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
   };
 
   return (
-    <div className="display-single-donation-request-container"> 
-      {donationData ? (
-        <div>
-      <h1>{donationData.title}</h1>
-      <p className="label">Description: {donationData.description}</p>
-      <p className="label">Start Date: {formatDate(donationData.start_date)}</p>
-      <p className="label">End Date: {formatDate(donationData.end_date)}</p>
-      <p className="label">Contact Number: {donationData.phone}</p>
-      <p className="label">Preferred Food: {donationData.preferred_food}</p>
-      <p className="label">Allergies: {donationData.allergies}</p>
-      <p className="label">Targeted Amount in Grams: {donationData.target_amount_in_grams}</p>
-      <p className="label">Address: {donationData.address_1} {donationData.address_2}, {donationData.city}, {donationData.province}, {donationData.postal_code}</p>
-    </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <Container maxWidth="md">
+      <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
+        {donationData ? (
+          <div>
+            <Typography variant="h4">{donationData.title}</Typography> {/* Change variant to h4 */}
+            <Typography className="label">
+              Description: {donationData.description}
+            </Typography>
+            <Typography className="label">
+              Start Date: {formatDate(donationData.start_date)}
+            </Typography>
+            <Typography className="label">
+              End Date: {formatDate(donationData.end_date)}
+            </Typography>
+            <Typography className="label">
+              Contact Number: {donationData.phone}
+            </Typography>
+            <Typography className="label">
+              Preferred Food: {donationData.preferred_food}
+            </Typography>
+            <Typography className="label">
+              Allergies: {donationData.allergies}
+            </Typography>
+            <Typography className="label">
+              Targeted Amount in Grams:{" "}
+              {donationData.target_amount_in_grams}
+            </Typography>
+            <Typography className="label">
+              Address: {donationData.address_1} {donationData.address_2},{" "}
+              {donationData.city}, {donationData.province},{" "}
+              {donationData.postal_code}
+            </Typography>
+          </div>
+        ) : (
+          <CircularProgress />
+        )}
+      </Box>
+    </Container>
   );
 };
-
 
 export default DisplaySingleDonationRequest;
