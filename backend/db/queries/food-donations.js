@@ -6,22 +6,6 @@ const {
 } = require("../db/queries/data_queries");
 // const data_queries = require('../db/queries/userQueries');
 
-// router.get('/', (req, res) => {
-//   // data_queries.getFoodDonations()
-//   getFoodDonations()
-//     .then(data => {
-//       res.json({ data });
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .json({ error: err.message });
-// const {
-//   saveFoodDonation,
-//   getFoodDonations,
-// } = require("../db/queries/data_queries");
-// const data_queries = require('../db/queries/userQueries');
-
 router.get("/", (req, res) => {
   // data_queries.getFoodDonations()
   getFoodDonations()
@@ -35,9 +19,20 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    // const formData = req.body;
-    await saveFoodDonation(formData);
-    res.status(200).json({ message: "Form data saved" });
+    const formData = req.body;
+
+    // const savedData = await saveFoodDonation(formData);
+    // await saveFoodDonation(formData);
+    console.log("form data:", formData);
+
+    //save the data to food donation table
+    //then return the food donation object
+    // using the food donation id, save the rest of the inforation into the address table
+
+    saveFoodDonation(formData).then((data) => {
+      console.log("data:", data);
+      res.status(200).json({ message: "Form data saved" });
+    });
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: "Server Error" });

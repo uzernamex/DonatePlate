@@ -12,13 +12,6 @@ const getFoodDonations = () => {
     return data.rows;
   });
 };
-
-const getAllDonations = () => {
-  return db.query("SELECT * FROM food_donations;").then((data) => {
-    return data.rows;
-  });
-};
-
 const getAddress = () => {
   return db.query("SELECT * FROM address;").then((data) => {
     return data.rows;
@@ -106,7 +99,6 @@ const saveAddress = async (formData) => {
 
 module.exports = {
   saveFoodDonation,
-  getAllDonations,
   saveAddress,
   getUsers,
   getAddress,

@@ -9,11 +9,25 @@ const morgan = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const app = express();
+// const { getUsers, getAddress, getMessages, getFoodDonations } = require('./db/queries/data_queries');
 
 var bodyParser = require("body-parser");
 
 // parse application/x-www-form-urlencoded
 
+app.use(bodyParser.json());
+
+app.post("/api/food-donations", async (req, res) => {
+  try {
+    const foodDonation = await saveFoodDonation(req.body);
+    res.json(foodDonation);
+  } catch (error) {
+    console.error("Error saving food donation", error);
+    res.status(500).json({ error: "Failed to save food donation" });
+  }
+});
+
+////////////
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
@@ -51,8 +65,8 @@ const userApiRoutes = require("./routes/users-api");
 const usersRoutes = require("./routes/users");
 const foodDonationRoutes = require("./routes/food-donations");
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
-const insertMessageAPiRoutes =  require("./routes/insert-message-api");
-const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
+const insertMessageAPiRoutes = require("./routes/insert-message-api");
+const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api");
 
 const saveFoodDonation = require("./routes/food-donations");
 // app.use("/api/food-donation-form", saveFoodDonation);
@@ -62,6 +76,8 @@ app.use("/api/food-donations", saveFoodDonation);
 const { getAllDonations } = require("./db/queries/data_queries");
 
 
+
+const saveAddress = require("./db/queries/data_queries").saveAddress;
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -75,9 +91,6 @@ app.use("/api/food-donations", foodDonationRoutes);
 app.use("/api/donation", singleDonationApiRoutes);
 app.use("/api/insert-message", insertMessageAPiRoutes);
 app.use("/api/display-messages", displayAllMessagesAPiRoutes);
-
-
-
 
 app.get("/", (req, res) => {
   res.render("index");
