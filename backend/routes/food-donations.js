@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   saveFoodDonation,
   getFoodDonations,
-} = require("../db/queries/data_queries");
+} = require("../../frontend/src/data_queries");
 // const data_queries = require('../db/queries/userQueries');
 
 router.get("/", (req, res) => {

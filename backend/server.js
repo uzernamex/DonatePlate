@@ -73,11 +73,9 @@ const saveFoodDonation = require("./routes/food-donations");
 
 app.use("/api/food-donations", saveFoodDonation);
 
-const { getAllDonations } = require("./db/queries/data_queries");
+const { getAllDonations } = require("../frontend/src/data_queries");
 
-
-
-const saveAddress = require("./db/queries/data_queries").saveAddress;
+const saveAddress = require("../frontend/src/data_queries").saveAddress;
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
