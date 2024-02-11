@@ -1,8 +1,10 @@
-.donation-form-container {
+.donations-list {
+  background-color: rgb(220, 209, 255);
+
   display: flex;
   flex-direction: column;
   width: 155%;
-  background-color: rgb(220, 209, 255);
+  background-color: #fff7e6;
   border: solid 4px;
   border-radius: 14px;
   border-color: #4d3300;
@@ -15,7 +17,10 @@
   
   h1 { 
     display: flex;
+    // justify-content: center;
+    // align-items: center;
     background-color: #ffdd99;
+    // border-radius: 7px; 
     font-weight: bold;
     font-family: 'Urbanist', sans-serif;
     width: 99%;
@@ -28,6 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  // width: 90%;
   margin-bottom: 10px;
 margin-left: 70px;;
 }
@@ -48,3 +54,4 @@ margin-left: 70px;;
   align-items: left;
  
 }
+;

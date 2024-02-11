@@ -7,25 +7,6 @@ const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchDonations = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://localhost:8080/api/food-donation-form"
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(`Error retrieving data: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       setSubmittedData(data ? data[0] : {});
-  //     } catch (error) {
-  //       console.error("Error fetching donation data:", error);
-  //     }
-  //   };
-
-  //   fetchDonations();
-  // }, []); // Empty dependency array to ensure useEffect runs only once on component mount
-
   return (
     <div className="donation-form-container">
       {isSubmitted ? (
