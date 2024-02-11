@@ -3,7 +3,7 @@ const db = require('../connection');
 
 const getFoodDonationId = (foodDonation) => {
   return db.query(
-    'SELECT id FROM food_donations WHERE food_id = $1',
+    'SELECT id FROM food_donations WHERE id = $1',
     [foodDonation]
   )
   .then((foodDonationResult) => {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../styles/DisplaySingleDonationRequest.scss"
 
-const DisplaySingleDonationRequest = () => {
+const DisplaySingleDonationRequest = ({foodDonationId}) => {
   const [donationData, setDonationData] = useState(null);
 
   useEffect(() => {
     const fetchData = () => {
       fetch("http://localhost:8080/api/donation/1") 
+      //replace 1 with foodDonationId
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

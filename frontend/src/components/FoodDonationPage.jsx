@@ -3,11 +3,12 @@ import InsertMessageForm from "./InsertMessageForm";
 
 
 
-const FoodDonationPage = () => {
+
+const FoodDonationPage = ({foodDontionId}) => {
   return(
     <div>
-      <DisplaySingleDonationRequest />
-      <InsertMessageForm />
+      <DisplaySingleDonationRequest foodDontionId = {foodDontionId}/>
+      <InsertMessageForm foodDontionId = {foodDontionId}/>
     </div> 
   )
 };

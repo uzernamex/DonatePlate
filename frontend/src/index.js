@@ -1,14 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { Auth0Provider } from "@auth0/auth0-react";
-import FoodDonationPage from "./components/FoodDonationPage";
-import DonationsList from "./components/DonationsList";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import FoodDonationPage from "./components/FoodDonationPage";
-// import Homepage from "./components/Homepage";
-// import FoodDonationForm from "./components/FoodDonationForm";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { Auth0Provider } from '@auth0/auth0-react';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import FoodDonationPage from './components/FoodDonationPage';
+import Homepage from './components/Homepage';
+import FoodDonationForm from './components/FoodDonationForm';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -18,10 +20,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-
-  { 
+  
+  {
     path: "/home",
-    // element: <Homepage />,
+    element: <Homepage />,
   },
 
   {
@@ -32,16 +34,10 @@ const router = createBrowserRouter([
     path: "/food-donation",
     element: <FoodDonationPage />,
   },
-  {
-    path: "/api/donations",
-    element: <DonationsList />,
-    path: "/food-donation/:id",
-    // element: <FoodDonationPage />,
-  },
 
   {
-    // path: "/food-donation-form",
-    // element: <FoodDonationForm />,
+    path: "/food-donation-form",
+    element: <FoodDonationForm />,
   },
 ]);
 ReactDOM.render(
