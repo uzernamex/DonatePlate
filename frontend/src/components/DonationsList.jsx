@@ -25,11 +25,11 @@ const DonationsList = () => {
     <div className="donation-form-container">
       <h1>All Donations</h1>
       {/* <ul> */}
-        {donations.map((donation) => (
-          <li key={donation.id}>
-            <strong>{donation.title}</strong> - {donation.description}
-          </li>
-        ))}
+      {donations.map((donation) => (
+        <li key={donation.id}>
+          <strong>{donation.title}</strong> - {donation.description}
+        </li>
+      ))}
       {/* </ul> */}
     </div>
   );
