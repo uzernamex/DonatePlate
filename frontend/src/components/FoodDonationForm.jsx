@@ -5,7 +5,7 @@ import "../styles/address.scss";
 
 const FoodDonationForm = ({ fetchDonations }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
+  // const [submittedData, setSubmittedData] = useState(null);
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/api/food-donation-form")
@@ -36,6 +36,10 @@ const FoodDonationForm = ({ fetchDonations }) => {
   // };
 
   // const handleSubmit = async (values, { setSubmitting }) => {
+
+
+
+
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       const foodDonationResponse = await fetch(
