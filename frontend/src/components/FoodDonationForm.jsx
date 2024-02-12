@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
 import { getFoodDonations, getAddress } from "../data_queries";
+import Navigation from "./Navigation";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
