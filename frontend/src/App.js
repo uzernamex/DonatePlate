@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <Navigation />
+      <Navigation user={user} />
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
