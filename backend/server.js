@@ -9,7 +9,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const app = express();
-// const { getUsers, getAddress, getMessages, getFoodDonations } = require('./db/queries/data_queries');
 
 var bodyParser = require("body-parser");
 
@@ -17,17 +16,6 @@ var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 
-app.post("/api/food-donations", async (req, res) => {
-  try {
-    const foodDonation = await saveFoodDonation(req.body);
-    res.json(foodDonation);
-  } catch (error) {
-    console.error("Error saving food donation", error);
-    res.status(500).json({ error: "Failed to save food donation" });
-  }
-});
-
-////////////
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
@@ -58,19 +46,29 @@ app.use(function (req, res, next) {
   next();
 });
 
+// app.post("/api/food-donations", async (req, res) => {
+//   try {
+//     const foodDonation = await saveFoodDonation(req.body);
+//     res.json(foodDonation);
+//   } catch (error) {
+//     console.error("Error saving food donation", error);
+//     res.status(500).json({ error: "Failed to save food donation" });
+//   }
+// });
+
 // Separated Routes for each Resource
 
 const userApiRoutes = require("./routes/users-api");
 const usersRoutes = require("./routes/users");
+
 const foodDonationRoutes = require("./routes/food-donations");
+
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
 const insertMessageAPiRoutes = require("./routes/insert-message-api");
 const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api");
 
-const saveFoodDonation = require("./routes/food-donations");
 app.use("/api/food-donation-form", saveFoodDonation);
-
-app.use("/api/food-donations", saveFoodDonation);
+app.use("/api/food-donations", foodDonationRoutes);
 
 const { getAllDonations } = require("../frontend/src/data_queries");
 
@@ -80,14 +78,16 @@ app.use("/api/users", userApiRoutes);
 
 app.use("/users", usersRoutes);
 
-app.use("/api/food-donations", foodDonationRoutes);
-
 app.use("/api/donation", singleDonationApiRoutes);
 app.use("/api/insert-message", insertMessageAPiRoutes);
 app.use("/api/display-messages", displayAllMessagesAPiRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/all-donations", (req, res) => {
+  res.render("all-donations");
 });
 
 app.listen(PORT, () => {

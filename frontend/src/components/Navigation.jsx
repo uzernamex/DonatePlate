@@ -6,7 +6,12 @@ import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
 import { Link } from 'react-router-dom';
 
+// <<<<<<< feature-donations-list
+
+// function Navigation() {
+// =======
 function Navigation({ user }) {
+// >>>>>>> main
   const [anchorNav, setAnchorNav] = useState(null);
 
   const openMenu = (event) => {
