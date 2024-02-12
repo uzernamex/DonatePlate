@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
+import { getFoodDonations, getAddress } from "../data_queries";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
-  // const [submittedData, setSubmittedData] = useState(null);
   const [addresses, setAddresses] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/api/food-donation-form")
       .then((response) => response.json())
       .then((data) => setAddresses(data))
       .catch((error) => console.error("Error fetching addresses", error));
-  });
+  }, []);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -37,9 +37,6 @@ const FoodDonationForm = () => {
   // };
 
   // const handleSubmit = async (values, { setSubmitting }) => {
-
-
-
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
@@ -139,8 +136,6 @@ const FoodDonationForm = () => {
             }}
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                // Send POST request to backend endpoint /food-donations
-                console.log("values:", values);
                 const response = await fetch(
                   "http://localhost:8080/api/food-donations",
 
@@ -149,15 +144,14 @@ const FoodDonationForm = () => {
                     headers: {
                       "Content-Type": "application/json",
                     },
-                    body:
-                    JSON.stringify(values),
+                    body: JSON.stringify(values),
                   }
                 );
 
                 if (response.ok) {
                   const data = await response.json();
                   console.log(data);
-                  setIsSubmitted(true); // Set form submission status to true
+                  setIsSubmitted(true);
                 } else {
                   throw new Error("Failed to save form data");
                 }

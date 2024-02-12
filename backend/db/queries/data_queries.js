@@ -13,14 +13,6 @@ const getFoodDonations = () => {
   });
 };
 
-<<<<<<< HEAD
-// const getAddress = () => {
-//   return db.query("SELECT * FROM address;").then((data) => {
-//     return data.rows;
-//   });
-// };
-
-=======
 const getAllDonations = () => {
   return db.query("SELECT * FROM food_donations;").then((data) => {
     return data.rows;
@@ -32,14 +24,13 @@ const getAddress = () => {
     return data.rows;
   });
 };
->>>>>>> origin/feature-donations-list
 const getMessages = () => {
   return db.query("SELECT * FROM messages;").then((data) => {
     return data.rows;
   });
 };
 
-const FoodDonation = async (formData) => {
+const saveFoodDonation = async (formData) => {
   const {
     title,
     description,
@@ -114,14 +105,9 @@ const saveAddress = async (formData) => {
 };
 
 module.exports = {
-<<<<<<< HEAD
-  FoodDonation,
-
-=======
   saveFoodDonation,
   getAllDonations,
   saveAddress,
->>>>>>> origin/feature-donations-list
   getUsers,
   getAddress,
   getMessages,

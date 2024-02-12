@@ -1,6 +1,6 @@
 // import { saveFoodDonation, saveAddress } from "../data_queries";
 
-const db = require("../connection");
+const db = require("../db/connection");
 
 const getUsers = () => {
   return db.query("SELECT * FROM users;").then((data) => {
