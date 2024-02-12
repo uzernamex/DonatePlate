@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import FoodDonationsCard from "./FoodDonationsCard";
 import CircularProgress from "@mui/material/CircularProgress";
-// import FoodDonationsCard from "./FoodDonationsCard";
+import FoodDonationsCard from "./FoodDonationsCard";
 
 const AllDonationsPage = () => {
   const [foodDonations, setFoodDonations] = useState([]);
@@ -15,8 +15,9 @@ const AllDonationsPage = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        setFoodDonations(data);
+      .then((responseJson) => {
+        setFoodDonations(responseJson.data);
+        // console.log("data:", data);
         setLoading(false);
       })
       .catch((error) => {
@@ -32,7 +33,7 @@ const AllDonationsPage = () => {
         <div className="food-donations-container">
           <h1>All Donations</h1>
           <div className="food-donations">
-            {/* <FoodDonationsCard foodDonations={foodDonations} /> */}
+            <FoodDonationsCard foodDonations={foodDonations} />
           </div>
         </div>
       )}
