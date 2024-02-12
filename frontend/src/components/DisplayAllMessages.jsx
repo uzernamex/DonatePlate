@@ -34,14 +34,14 @@ const DisplayMessage = () => {
               <div
                 key={index}
                 style={{
-                  background: index % 2 === 0 ? "#f0f0f0" : "#dcdcdc", 
-                  padding: "10px", 
+                  background: index % 2 === 0 ? "#f0f0f0" : "#dcdcdc",
+                  padding: "10px",
                 }}
               >
                 <Typography className="label">Name: {message.name}</Typography>
                 <Typography className="label">Email: {message.email}</Typography>
                 <Typography className="label">Message: {message.message}</Typography>
-                {index !== messageData.length - 1 && <Divider />} 
+                {index !== messageData.length - 1 && <Divider />}
               </div>
             ))}
           </div>

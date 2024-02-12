@@ -6,8 +6,7 @@ const {
 } = require("../db/queries/data_queries");
 // const data_queries = require('../db/queries/userQueries');
 
-router.get("/", (req, res) => {
-  // data_queries.getFoodDonations()
+router.get("/api/food-donations", (req, res) => {
   getFoodDonations()
     .then((data) => {
       res.json({ data });

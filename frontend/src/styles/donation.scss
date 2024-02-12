@@ -1,7 +1,7 @@
 .donation-form-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 50%;
   background-color: #e5e6eb;
   border: double 4px;
   border-radius: 8px;
@@ -12,6 +12,10 @@
   font-size: 20px;
   align-items: flex-start;
   box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.372);
+}
+.media-card {
+  margin-left: 108px;
+  border-radius: 4px;
 }
   
   h1 { 

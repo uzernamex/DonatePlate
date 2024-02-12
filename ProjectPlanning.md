@@ -48,7 +48,7 @@ Stretch / Other / Notes
 #### To re-write / Drafts
 
 ### Overview:
-• An app that reduces food insecurity by facilitating the collection and distribution of overstock from organizations, hospitals,
+• An app that reduces food insecurity by facilitating the collection of overstock from organizations, hospitals,
 
 • An app that is accessible on desktop and mobile
 
@@ -69,5 +69,4 @@ As a Visitor I can:
 - Send a message about a particular food donation drive
 
 
-• Make planning directory inside of the GitHub repo for access?(Screenshot the wireframes, sc the ERD, user stories.md)
-![image](https://github.com/uzernamex/DonatePlate/assets/113137050/9e8f2bd9-8d18-4228-b6c8-54f07c7fd6f8)
+

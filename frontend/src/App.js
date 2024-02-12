@@ -7,13 +7,14 @@ import InsertMessageForm from "./components/InsertMessageForm";
 import DisplayAllMessages from "./components/DisplayAllMessages";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import FoodDonationsCard from './components/AllDonationsPage';
 
 function App() {
   const { isLoading, error, user } = useAuth0();
 
   return (
     <div>
-      <Navigation />
+      <Navigation user={user} />
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
@@ -24,6 +25,7 @@ function App() {
           <DisplayAllMessages />
           <div className="form-container">
             <FoodDonationForm />
+            <FoodDonationsCard />
           </div>
         </>
       )}

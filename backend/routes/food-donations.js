@@ -3,7 +3,6 @@ const router = express.Router();
 const { saveFoodDonation, getFoodDonations } = require("./data-queries2.js");
 
 router.get("/", (req, res) => {
-  // data_queries.getFoodDonations()
   getFoodDonations()
     .then((data) => {
       res.json({ data });
