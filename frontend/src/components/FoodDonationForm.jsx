@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
+import MediaCard from "./MUI_card";
+import { saveFoodDonation } from "../data_queries";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
-import { getFoodDonations, getAddress } from "../data_queries";
-import Navigation from "./Navigation";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
-  const [addresses, setAddresses] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:8080/api/food-donation-form")
-      .then((response) => response.json())
-      .then((data) => setAddresses(data))
-      .catch((error) => console.error("Error fetching addresses", error));
-  }, []);
-
-  
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -34,14 +24,14 @@ const FoodDonationForm = () => {
     Country: "Canada",
   });
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
+  useEffect(() => {
+    fetch("http://localhost:8080/api/food-donations")
+      .then((response) => response.json())
+      .then((data) => setFormData(data))
+      .catch((error) => console.error("Error fetching form data", error));
+  }, []);
 
-  // const handleSubmit = async (values, { setSubmitting }) => {
-
-  const onSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const foodDonationResponse = await fetch(
         "http://localhost:8080/api/food-donations",
@@ -53,34 +43,14 @@ const FoodDonationForm = () => {
           body: JSON.stringify(values),
         }
       );
-      if (!foodDonationResponse.ok) {
+
+      if (foodDonationResponse.ok) {
+        setIsSubmitted(true);
+
+        saveFoodDonation();
+      } else {
         throw new Error("Failed to save food donation");
       }
-
-      const foodDonationData = await foodDonationResponse.json(values);
-      console.log("Food donation saved:", foodDonationData);
-
-      const addressResponse = await fetch(
-        "http://localhost:8080/api/addresses",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...values,
-            food_donation_id: foodDonationData.id,
-          }),
-        }
-      );
-      if (!addressResponse.ok) {
-        throw new Error("Failed to save address");
-      }
-
-      const addressData = await addressResponse.json();
-      console.log("Address saved:", addressData);
-
-      setIsSubmitted(true);
     } catch (error) {
       console.error("Error saving form data:", error);
     } finally {
@@ -92,77 +62,32 @@ const FoodDonationForm = () => {
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>
-          <h1>Form Submission Received!</h1>
+          <h1>Form Submission Received; Thank you!</h1>
           <div className="submitted-data-new-donation">
-            <h2>New Event:</h2>
-            {/* <p>Title: {submittedData.title}</p> */}
-            {/* Display other submitted data as needed */}
+            <MediaCard formData={formData} />
+            {/* <MediaCard formData={formData} image={imgSrc} /> */}
           </div>
         </div>
       ) : (
         <>
-          <h1> Food Donations </h1>
+          <h1>Food Donations</h1>
           <Formik
-            initialValues={{
-              title: "",
-              description: "",
-              start_date: "",
-              end_date: "",
-              phone: "",
-              preferred_food: "",
-              allergies: "",
-              target_amount_in_grams: "",
-              address_1: "",
-              address_2: "",
-              city: "",
-              province: "",
-              postal_code: "",
-              Country: "Canada",
-            }}
+            initialValues={formData}
+            onSubmit={handleSubmit}
             validate={(values) => {
               const errors = {};
               if (!values.phone) {
                 errors.phone = "Required";
-              } else if (!/[0-9]/i.test(values.phone)) {
+              } else if (!/^[0-9]+$/i.test(values.phone)) {
                 errors.phone = "Invalid phone number";
               }
               if (
                 !values.postal_code ||
-                !/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/.test(
-                  values.postal_code
-                )
+                !/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/i.test(values.postal_code)
               ) {
-                errors.postal_code =
-                  "Invalid postal code format (e.g., A1A 1A1)";
+                errors.postal_code = "Invalid postal code format";
               }
               return errors;
-            }}
-            onSubmit={async (values, { setSubmitting }) => {
-              try {
-                const response = await fetch(
-                  "http://localhost:8080/api/food-donations",
-
-                  {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(values),
-                  }
-                );
-
-                if (response.ok) {
-                  const data = await response.json();
-                  console.log(data);
-                  setIsSubmitted(true);
-                } else {
-                  throw new Error("Failed to save form data");
-                }
-              } catch (error) {
-                console.error("Error saving form data:", error);
-              } finally {
-                setSubmitting(false);
-              }
             }}
           >
             {({

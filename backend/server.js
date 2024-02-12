@@ -23,7 +23,6 @@ var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 
-
 app.set("view engine", "ejs");
 
 app.use(morgan("dev"));
@@ -40,34 +39,34 @@ app.use(function (req, res, next) {
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-    );
-    // Request headers you wish to allow
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "X-Requested-With,content-type"
-      );
-      // Set to true if you need the website to include cookies in the requests sent
-      // to the API (e.g. in case you use sessions)
-      res.setHeader("Access-Control-Allow-Credentials", true);
+  );
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
 
-      // Pass to next layer of middleware
-      next();
-    });
+  // Pass to next layer of middleware
+  next();
+});
 
-    // app.post("/api/food-donations", async (req, res) => {
-    //   try {
-    //     const foodDonation = await saveFoodDonation(req.body);
-    //     res.json(foodDonation);
-    //   } catch (error) {
-    //     console.error("Error saving food donation", error);
-    //     res.status(500).json({ error: "Failed to save food donation" });
-    //   }
-    // });
+// app.post("/api/food-donations", async (req, res) => {
+//   try {
+//     const foodDonation = await saveFoodDonation(req.body);
+//     res.json(foodDonation);
+//   } catch (error) {
+//     console.error("Error saving food donation", error);
+//     res.status(500).json({ error: "Failed to save food donation" });
+//   }
+// });
 
-    // Separated Routes for each Resource
+// Separated Routes for each Resource
 
-    const userApiRoutes = require("./routes/users-api");
-    const usersRoutes = require("./routes/users");
+const userApiRoutes = require("./routes/users-api");
+const usersRoutes = require("./routes/users");
 
 const foodDonationRoutes = require("./routes/food-donations");
 // const foodDonationRoutes = require("./api/food-donations");
@@ -98,7 +97,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/api/food-donations", async (req, res) => {
+  try {
+    const foodDonation = await saveFoodDonation(req.body);
+    res.status(302).redirect("/all-donations");
+  } catch (error) {
+    console.error("Error saving food donation", error);
+    res.status(500).json({ error: "Failed to save food donation" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-

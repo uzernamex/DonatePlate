@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DonationsList from "../components/DonationsList";
 import MediaCard from "./MUI_card";
 
 const DonationsListPage = () => {
@@ -30,9 +29,10 @@ const DonationsListPage = () => {
         {donations.map((donation) => (
           <MediaCard
             key={donation.id}
-            title={donation.title}
-            description={donation.description}
-            image={donation.image}
+            formData={donation}
+            // title={donation.title}
+            // description={donation.description}
+            // image={donation.image}
           />
         ))}
       </div>
