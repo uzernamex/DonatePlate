@@ -4,6 +4,7 @@ import { saveFoodDonation } from "../data_queries";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
+// import { saveFoodDonation } from "../../../backend/routes/data-queries2";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -43,11 +44,11 @@ const FoodDonationForm = () => {
           body: JSON.stringify(values),
         }
       );
+      setFormData(values);
 
       if (foodDonationResponse.ok) {
         setIsSubmitted(true);
 
-        saveFoodDonation();
       } else {
         throw new Error("Failed to save food donation");
       }
@@ -65,7 +66,6 @@ const FoodDonationForm = () => {
           <h1>Form Submission Received; Thank you!</h1>
           <div className="submitted-data-new-donation">
             <MediaCard formData={formData} />
-            {/* <MediaCard formData={formData} image={imgSrc} /> */}
           </div>
         </div>
       ) : (

@@ -1,43 +1,43 @@
-import React, { useEffect, useState } from "react";
-import MediaCard from "./MUI_card";
+import React, { useState, useEffect } from "react";
+// import FoodDonationsCard from "./FoodDonationsCard";
+import CircularProgress from "@mui/material/CircularProgress";
+// import FoodDonationsCard from "./FoodDonationsCard";
 
-const DonationsListPage = () => {
-  const [donations, setDonations] = useState([]);
+const AllDonationsPage = () => {
+  const [foodDonations, setFoodDonations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const fetchDonations = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/api/food-donations"
-        );
+    fetch("http://localhost:8080/api/food-donations")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(`Error retrieving data: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
-        setDonations(data);
-      } catch (error) {
-        console.error("Error fetching donation data:", error);
-      }
-    };
-
-    fetchDonations();
+        return response.json();
+      })
+      .then((data) => {
+        setFoodDonations(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching food donations:", error);
+      });
   }, []);
 
   return (
-    <div>
-      <h2>Donations List</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {donations.map((donation) => (
-          <MediaCard
-            key={donation.id}
-            formData={donation}
-            // title={donation.title}
-            // description={donation.description}
-            // image={donation.image}
-          />
-        ))}
-      </div>
+    <div className="donation-form-container">
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <div className="food-donations-container">
+          <h1>All Donations</h1>
+          <div className="food-donations">
+            {/* <FoodDonationsCard foodDonations={foodDonations} /> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default DonationsListPage;
+export default AllDonationsPage;
