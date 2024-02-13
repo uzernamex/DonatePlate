@@ -1,20 +1,18 @@
 import React from "react";
+import RandomImageDisplay from "../RandomImage";
+import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import RandomImageDisplay from "../RandomImage";
-import { styled } from "@mui/material/styles";
-import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Collapse from "@mui/material/Collapse";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,14 +33,13 @@ const FoodDonationsCard = ({ foodDonations }) => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {foodDonations.map((donation, index) => (
         <Card
           key={donation.id}
           variant="outlined"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "20px", marginRight: "40px" }}
         >
-          {/* <RandomImageDisplay imagePath={[donation.imagePath]} /> */}
           <CardMedia
             component="img"
             height="200"
@@ -98,7 +95,6 @@ const FoodDonationsCard = ({ foodDonations }) => {
           >
             <CardContent>
               <Typography paragraph>Details:</Typography>
-
               <Typography color="textSecondary">
                 Phone: {donation.phone}
               </Typography>

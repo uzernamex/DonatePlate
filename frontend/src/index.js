@@ -7,6 +7,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FoodDonationPage from "./components/FoodDonationPage";
 import FoodDonationForm from "./components/FoodDonationForm";
 import DisplayAllMessages from "./components/DisplayAllMessages";
+import AllDonationsPage from "./components/AllDonationsPage";
+import FoodDonationsCard from "./components/FoodDonationsCard";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
@@ -30,6 +32,13 @@ const router = createBrowserRouter([
     path: "/food-donation-form",
     element: <FoodDonationForm />,
   },
+
+  {
+    path: "/all-donations",
+    element: <FoodDonationsCard />,
+  },
+
+
 ]);
 ReactDOM.render(
   <React.StrictMode>

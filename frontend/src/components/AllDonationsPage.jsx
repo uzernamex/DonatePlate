@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import FoodDonationsCard from "./FoodDonationsCard";
 import CircularProgress from "@mui/material/CircularProgress";
 import FoodDonationsCard from "./FoodDonationsCard";
 
@@ -17,7 +16,6 @@ const AllDonationsPage = () => {
       })
       .then((responseJson) => {
         setFoodDonations(responseJson.data);
-        // console.log("data:", data);
         setLoading(false);
       })
       .catch((error) => {
@@ -26,11 +24,11 @@ const AllDonationsPage = () => {
   }, []);
 
   return (
-    <div className="donation-form-container">
+    <div className="donation-form-containe">
       {loading ? (
         <CircularProgress />
       ) : (
-        <div 
+        <div
         // className="food-donations-container"
         >
           <h1>All Donations</h1>
