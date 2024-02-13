@@ -12,15 +12,16 @@ function App() {
   return (
     <div>
       <Navigation user={user} />
+      <div className="form-container">
+            {/* <FoodDonationForm /> */}
+            <FoodDonationsCard />
+          </div>
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
           <Profile />
-          <div className="form-container">
-            {/* <FoodDonationForm /> */}
-            <FoodDonationsCard />
-          </div>
+          
         </>
       )}
     </div>
