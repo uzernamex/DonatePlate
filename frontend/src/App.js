@@ -24,7 +24,7 @@ function App() {
           <InsertMessageForm />
           <DisplayAllMessages />
           <div className="form-container">
-            <FoodDonationForm />
+            {/* <FoodDonationForm /> */}
             <FoodDonationsCard />
           </div>
         </>

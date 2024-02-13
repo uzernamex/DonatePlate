@@ -62,3 +62,12 @@
   flex-direction: row;
   align-items: left;
 }
+
+.food-donation-cards {
+  display: flex;
+  flex-direction: row;
+  align-items: row;
+  justify-content: center;
+  padding: 5.5px;
+  margin: 5px;
+}

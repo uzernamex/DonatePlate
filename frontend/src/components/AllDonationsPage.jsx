@@ -30,9 +30,11 @@ const AllDonationsPage = () => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <div className="food-donations-container">
+        <div 
+        // className="food-donations-container"
+        >
           <h1>All Donations</h1>
-          <div className="food-donations">
+          <div className="food-donation-cards">
             <FoodDonationsCard foodDonations={foodDonations} />
           </div>
         </div>
