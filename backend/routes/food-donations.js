@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 
     saveFoodDonation(formData).then((data) => {
       console.log("data:", data);
-      res.status(200).json({ message: "Form data saved" });
+      res.status(200).json({ message: "Form data saved", key: data });
     });
   } catch (error) {
     console.error("Error saving form data:", error);

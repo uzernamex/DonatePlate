@@ -16,7 +16,6 @@ function App() {
     <div>
       <Navigation user={user} />
       <div className="form-container">
-        {/* <FoodDonationForm /> */}
         <FoodDonationsCard />
       </div>
       {error && <p>Authentication Error</p>}
@@ -27,7 +26,6 @@ function App() {
           <DisplaySingleDonationRequest />
           <InsertMessageForm />
           <DisplayAllMessages />
-          {/* <FoodDonationForm /> */}
           <FoodDonationsCard />
         </>
       )}
