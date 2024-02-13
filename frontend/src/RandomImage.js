@@ -32,10 +32,7 @@ const RandomImageDisplay = ({ imagePath }) => {
         // image={"./../docs/img-NonPerishableFoodItems.png[0]"}
         // alt="Food Donation Image"
       />
-      <Box m={8} />
-      <Button variant="contained" color="primary" onClick={handleRandomize}>
-        More Details
-      </Button>
+    
     </ImageContainer>
   );
 };
