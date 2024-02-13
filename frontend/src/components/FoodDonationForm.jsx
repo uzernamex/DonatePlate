@@ -6,9 +6,12 @@ import "../styles/donation.scss";
 import "../styles/address.scss";
 // import { saveFoodDonation } from "../../../backend/routes/data-queries2";
 import Navigation from "./Navigation";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { user } = useAuth0();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -62,7 +65,7 @@ const FoodDonationForm = () => {
 
   return (
     <>
-    <Navigation />
+    <Navigation user={user}/>
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>

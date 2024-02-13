@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Typography, CircularProgress, Container, Box, Divider } from "@mui/material";
 import Navigation from "./Navigation";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DisplayMessage = () => {
   const [messageData, setMessageData] = useState([]);
+  const { user } = useAuth0();
 
   useEffect(() => {
     const fetchData = () => {
@@ -27,7 +29,7 @@ const DisplayMessage = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation user={user}/>
       <Container maxWidth="md">
         <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
           {messageData.length > 0 ? (
