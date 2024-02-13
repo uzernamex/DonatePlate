@@ -138,6 +138,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="start_date"
+                    placeholder="YYYY-MM-DD"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.start_date}
@@ -150,6 +151,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="end_date"
+                    placeholder="YYYY-MM-DD"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.end_date}
@@ -162,6 +164,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="phone"
+                    placeholder="'1234567890'"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.phone}
@@ -259,6 +262,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="postal_code"
+                    placeholder="'M4P 1N8'"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.Postal_code}
