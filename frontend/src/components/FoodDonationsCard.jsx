@@ -14,6 +14,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Collapse from "@mui/material/Collapse";
 import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,18 +36,18 @@ const FoodDonationsCard = ({ foodDonations }) => {
 
   return (
     <div>
-      {foodDonations.map((donation) => (
-        <Card key={donation.id} variant="outlined">
+      {foodDonations.map((donation, index) => (
+        <Card
+          key={donation.id}
+          variant="outlined"
+          style={{ marginBottom: "20px" }}
+        >
           {/* <RandomImageDisplay imagePath={[donation.imagePath]} /> */}
           <CardMedia
             component="img"
             height="200"
-            // image={donation.imagePath}
-            // image={require(`./../docs/img-NonPerishableFoodItems.png`).default} 
-            // image={require('./../docs/img-NonPerishableFoodItems.png').default}
+            width="100%"
             image={`${process.env.PUBLIC_URL}/img-NonPerishableFoodItems.png`}
-            // image={'./../docs/}
-            // alt={donation.title}
           />
           <CardContent>
             <Typography variant="h5" component="h2">
@@ -69,7 +70,10 @@ const FoodDonationsCard = ({ foodDonations }) => {
             <IconButton aria-label="share">
               <ShareIcon />
             </IconButton>
-
+            <CardActions>
+              <Button size="small"></Button>
+              <Button size="small">Learn More</Button>
+            </CardActions>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -79,7 +83,19 @@ const FoodDonationsCard = ({ foodDonations }) => {
               <ExpandMoreIcon />
             </ExpandMore>
           </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
+
+          <Collapse
+            in={expanded}
+            timeout="auto"
+            unmountOnExit
+            style={{
+              minWidth: "200px",
+              width: "100%",
+              minHeight: expanded ? 0 : "auto",
+              maxHeight: expanded ? "none" : "200px",
+              overflowY: expanded ? "visible" : "hidden",
+            }}
+          >
             <CardContent>
               <Typography paragraph>Details:</Typography>
 
