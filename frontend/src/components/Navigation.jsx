@@ -11,6 +11,7 @@ import {
   Button,
   Avatar,
 } from "@mui/material";
+
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutButton from "./LogoutButton";
@@ -54,6 +55,8 @@ function Navigation({ user }) {
               <Button color="inherit" component={Link} to="/">
                 Home
               </Button>
+
+
               <Button color="inherit" component={Link} to="/all-messages">
                 All Messages
               </Button>
@@ -62,6 +65,7 @@ function Navigation({ user }) {
                 component={Link}
                 to="/single-food-donation/:id"
               >
+
                 All Donations
               </Button>
               <Button color="inherit" component={Link} to="/food-donation-form">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
-
 const InsertMessageForm = ({ foodDonationId }) => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
@@ -39,7 +38,16 @@ const InsertMessageForm = ({ foodDonationId }) => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ overflowY: 'auto', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <Container
+      maxWidth="md"
+      sx={{
+        overflowY: "auto",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <Box p={4}>
         <Typography variant="h2">Contact Us</Typography>
         <Formik
@@ -106,12 +114,12 @@ const InsertMessageForm = ({ foodDonationId }) => {
         </Formik>
         {submissionStatus === "success" && (
           <Typography
-          variant="body1"
-          className="success-message"
-          sx={{ color: "green" }} // Change color to green for success message
-        >
-          Thank you for contacting us, We will get back to you soon!
-        </Typography>
+            variant="body1"
+            className="success-message"
+            sx={{ color: "green" }} // Change color to green for success message
+          >
+            Thank you for contacting us, We will get back to you soon!
+          </Typography>
         )}
         {submissionStatus === "error" && (
           <Typography variant="body1" className="error-message">

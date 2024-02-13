@@ -2,16 +2,16 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import RandomImageDisplay from "../RandomImage";
+// import RandomImageDisplay from "../RandomImage";
 import { styled } from "@mui/material/styles";
-import CardHeader from "@mui/material/CardHeader";
+// import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
-import { red } from "@mui/material/colors";
+// import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Collapse from "@mui/material/Collapse";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -73,8 +73,13 @@ const FoodDonationsCard = ({ foodDonations }) => {
             </IconButton>
             <CardActions>
               <Button size="small"></Button>
-              <Button size="small" component={Link}
-                to={`/single-food-donation/${donation.id}`}>Learn More</Button>
+              <Button
+                size="small"
+                component={Link}
+                to={`/single-food-donation/${donation.id}`}
+              >
+                Learn More
+              </Button>
             </CardActions>
             <ExpandMore
               expand={expanded}

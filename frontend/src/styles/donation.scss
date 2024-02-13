@@ -13,6 +13,21 @@
   align-items: flex-start;
   box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.372);
 }
+.all-donations-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #e5e6eb;
+  border: double 4px;
+  border-radius: 8px;
+  border-color: #192e3f1a;
+  padding: 10px;
+  margin: 100px; 
+  font-family: 'Urbanist', sans-serif;
+  font-size: 20px;
+  align-items: flex-start;
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.372);
+}
 .media-card {
   margin-left: 108px;
   border-radius: 4px;
@@ -53,15 +68,13 @@
   border-radius: 8px;
   border: 8px outset #406168;
 }
+.submit-button:hover {
+  background-color: #0056b3; 
+  color: white;
+}
 .form-field {
   margin: 8px;   
-  // align-items: left;
 }
-
-// .form-field {
-  // margin: 100px;
-// }
-
 .form-container {
   display: flex;
   flex-direction: row;

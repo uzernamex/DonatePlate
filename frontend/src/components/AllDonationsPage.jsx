@@ -26,14 +26,14 @@ const AllDonationsPage = () => {
   }, []);
 
   return (
-    <div className="donation-form-container">
+    <div 
+    className="all-donations-container"
+    >
       {loading ? (
         <CircularProgress />
       ) : (
-        <div 
-        // className="food-donations-container"
-        >
-          <h1>All Donations Drives</h1>
+        <div>
+          <h1>Current Food Drives</h1>
           <div className="food-donation-cards">
             <FoodDonationsCard foodDonations={foodDonations} />
           </div>

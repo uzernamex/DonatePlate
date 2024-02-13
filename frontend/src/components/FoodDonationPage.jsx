@@ -7,7 +7,7 @@ const FoodDonationPage = ({ foodDonationId }) => {
   const { user } = useAuth0();
   return (
     <div>
-      <Navigation user={user}/>
+      <Navigation user={user} />
       <DisplaySingleDonationRequest foodDonationId={foodDonationId} />
       <InsertMessageForm foodDonationId={foodDonationId} />
     </div>
