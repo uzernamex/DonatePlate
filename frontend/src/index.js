@@ -16,13 +16,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
+  
 
   {
     path: "/all-messages",
     element: <DisplayAllMessages />,
   },
   {
-    path: "/single-food-donation",
+    path: "/single-food-donation/:id",
     element: <FoodDonationPage />,
   },
 

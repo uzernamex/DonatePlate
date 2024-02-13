@@ -15,6 +15,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Collapse from "@mui/material/Collapse";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -72,7 +73,8 @@ const FoodDonationsCard = ({ foodDonations }) => {
             </IconButton>
             <CardActions>
               <Button size="small"></Button>
-              <Button size="small">Learn More</Button>
+              <Button size="small" component={Link}
+                to={`/single-food-donation/${donation.id}`}>Learn More</Button>
             </CardActions>
             <ExpandMore
               expand={expanded}

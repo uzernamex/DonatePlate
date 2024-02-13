@@ -33,7 +33,7 @@ const AllDonationsPage = () => {
         <div 
         // className="food-donations-container"
         >
-          <h1>All Donations</h1>
+          <h1>All Donations Drives</h1>
           <div className="food-donation-cards">
             <FoodDonationsCard foodDonations={foodDonations} />
           </div>

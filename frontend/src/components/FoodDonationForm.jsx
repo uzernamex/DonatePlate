@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
 // import { saveFoodDonation } from "../../../backend/routes/data-queries2";
+import Navigation from "./Navigation";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -61,6 +62,7 @@ const FoodDonationForm = () => {
 
   return (
     <div className="donation-form-container">
+      <Navigation />
       {isSubmitted ? (
         <div>
           <h1>Form Submission Received; Thank you!</h1>

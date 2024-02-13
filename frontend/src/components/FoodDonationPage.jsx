@@ -2,12 +2,12 @@ import DisplaySingleDonationRequest from "./DisplaySingleDonationRequest";
 import Navigation from "./Navigation";
 import InsertMessageForm from "./InsertMessageForm";
 
-const FoodDonationPage = ({ foodDontionId }) => {
+const FoodDonationPage = ({ foodDonationId }) => {
   return (
     <div>
       <Navigation />
-      <DisplaySingleDonationRequest foodDontionId={foodDontionId} />
-      <InsertMessageForm foodDontionId={foodDontionId} />
+      <DisplaySingleDonationRequest foodDonationId={foodDonationId} />
+      <InsertMessageForm foodDonationId={foodDonationId} />
     </div>
   );
 };

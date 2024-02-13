@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, CircularProgress, Container, Box, Divider } from "@mui/material";
+import Navigation from "./Navigation";
 
 const DisplayMessage = () => {
   const [messageData, setMessageData] = useState([]);
@@ -26,6 +27,7 @@ const DisplayMessage = () => {
 
   return (
     <Container maxWidth="md">
+      <Navigation />
       <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
         {messageData.length > 0 ? (
           <div>
