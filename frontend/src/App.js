@@ -5,6 +5,7 @@ import FoodDonationForm from "./components/FoodDonationForm";
 import DisplaySingleDonationRequest from "./components/DisplaySingleDonationRequest";
 import InsertMessageForm from "./components/InsertMessageForm";
 import DisplayAllMessages from "./components/DisplayAllMessages";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import FoodDonationsCard from "./components/AllDonationsPage";
 
@@ -14,6 +15,10 @@ function App() {
   return (
     <div>
       <Navigation user={user} />
+      <div className="form-container">
+        {/* <FoodDonationForm /> */}
+        <FoodDonationsCard />
+      </div>
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (

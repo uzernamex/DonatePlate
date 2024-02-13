@@ -69,7 +69,13 @@ const FoodDonationsCard = ({ foodDonations }) => {
             </IconButton>
             <CardActions>
               <Button size="small"></Button>
-              <Button size="small">Learn More</Button>
+              <Button
+                size="small"
+                component={Link}
+                to={`/single-food-donation/${donation.id}`}
+              >
+                Learn More
+              </Button>
             </CardActions>
             <ExpandMore
               expand={expanded}

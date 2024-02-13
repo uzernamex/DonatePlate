@@ -24,6 +24,7 @@ const AllDonationsPage = () => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="donation-form-containe">
       {loading ? (
         <CircularProgress />
@@ -32,6 +33,16 @@ const AllDonationsPage = () => {
         // className="food-donations-container"
         >
           <h1>All Donations</h1>
+=======
+    <div 
+    className="all-donations-container"
+    >
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <div>
+          <h1>Current Food Drives</h1>
+>>>>>>> origin/feature-details
           <div className="food-donation-cards">
             <FoodDonationsCard foodDonations={foodDonations} />
           </div>

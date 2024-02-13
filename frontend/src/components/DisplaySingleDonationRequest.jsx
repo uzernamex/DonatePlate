@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Typography, CircularProgress, Container, Box } from "@mui/material";
+import { useParams } from "react-router";
 
 
-const DisplaySingleDonationRequest = ({ foodDonationId }) => {
+const DisplaySingleDonationRequest = ({foodDonationId}) => {
   const [donationData, setDonationData] = useState(null);
-
+  const {id} = useParams();
   useEffect(() => {
     const fetchData = () => {
-      fetch(`http://localhost:8080/api/donation/1`) // replace 1 with foodDonationId
+      fetch(`http://localhost:8080/api/donation/${id}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

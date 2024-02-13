@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import MediaCard from "./MUI_card";
-import { saveFoodDonation } from "../data_queries";
+import MediaCard from "./MediaCard";
 import { Formik } from "formik";
 import "../styles/donation.scss";
-import "../styles/address.scss";
-// import { saveFoodDonation } from "../../../backend/routes/data-queries2";
+import Navigation from "./Navigation";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { user } = useAuth0();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -60,6 +60,8 @@ const FoodDonationForm = () => {
   };
 
   return (
+    <>
+    <Navigation user={user}/>
     <div className="donation-form-container">
       {isSubmitted ? (
         <div>
@@ -70,6 +72,7 @@ const FoodDonationForm = () => {
         </div>
       ) : (
         <>
+        
           <h1>Food Donations</h1>
           <Formik
             initialValues={formData}
@@ -131,6 +134,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="start_date"
+                    placeholder="YYYY-MM-DD"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.start_date}
@@ -143,6 +147,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="end_date"
+                    placeholder="YYYY-MM-DD"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.end_date}
@@ -155,6 +160,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="phone"
+                    placeholder="'1234567890'"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.phone}
@@ -252,6 +258,7 @@ const FoodDonationForm = () => {
                   <input
                     type="text"
                     name="postal_code"
+                    placeholder="'M4P 1N8'"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.Postal_code}
@@ -285,6 +292,7 @@ const FoodDonationForm = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 
