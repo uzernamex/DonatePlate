@@ -3,11 +3,10 @@ import MediaCard from "./MUI_card";
 //import { saveFoodDonation } from "../data_queries";
 import { Formik } from "formik";
 import "../styles/donation.scss";
-import "../styles/address.scss";
+// import "../styles/address.scss";
 // import { saveFoodDonation } from "../../../backend/routes/data-queries2";
 import Navigation from "./Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
-
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
