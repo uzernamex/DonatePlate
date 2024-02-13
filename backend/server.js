@@ -61,7 +61,6 @@ app.use("/api/food-donations", foodDonationRoutes);
 const { getAllDonations } = require("../frontend/src/data_queries");
 
 const saveAddress = require("../frontend/src/data_queries").saveAddress;
-
 app.use("/api/users", userApiRoutes);
 
 app.use("/users", usersRoutes);
