@@ -38,7 +38,6 @@ export default function MediaCard({ formData, image }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Home</Button>
           <Button size="small">Learn More</Button>
         </CardActions>
       </Card>

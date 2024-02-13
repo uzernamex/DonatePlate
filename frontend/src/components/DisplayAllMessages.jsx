@@ -26,32 +26,34 @@ const DisplayMessage = () => {
   }, []);
 
   return (
-    <Container maxWidth="md">
+    <>
       <Navigation />
-      <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
-        {messageData.length > 0 ? (
-          <div>
-            <Typography variant="h3">All Messages</Typography>
-            {messageData.map((message, index) => (
-              <div
-                key={index}
-                style={{
-                  background: index % 2 === 0 ? "#f0f0f0" : "#dcdcdc",
-                  padding: "10px",
-                }}
-              >
-                <Typography className="label">Name: {message.name}</Typography>
-                <Typography className="label">Email: {message.email}</Typography>
-                <Typography className="label">Message: {message.message}</Typography>
-                {index !== messageData.length - 1 && <Divider />}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <CircularProgress />
-        )}
-      </Box>
-    </Container>
+      <Container maxWidth="md">
+        <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
+          {messageData.length > 0 ? (
+            <div>
+              <Typography variant="h3">All Messages</Typography>
+              {messageData.map((message, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: index % 2 === 0 ? "#f0f0f0" : "#dcdcdc",
+                    padding: "10px",
+                  }}
+                >
+                  <Typography className="label">Name: {message.name}</Typography>
+                  <Typography className="label">Email: {message.email}</Typography>
+                  <Typography className="label">Message: {message.message}</Typography>
+                  {index !== messageData.length - 1 && <Divider />}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <CircularProgress />
+          )}
+        </Box>
+      </Container>
+    </>
   );
 };
 

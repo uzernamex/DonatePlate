@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MediaCard from "./MUI_card";
-import { saveFoodDonation } from "../data_queries";
+//import { saveFoodDonation } from "../data_queries";
 import { Formik } from "formik";
 import "../styles/donation.scss";
 import "../styles/address.scss";
@@ -61,8 +61,9 @@ const FoodDonationForm = () => {
   };
 
   return (
+    <>
+    <Navigation />
     <div className="donation-form-container">
-      <Navigation />
       {isSubmitted ? (
         <div>
           <h1>Form Submission Received; Thank you!</h1>
@@ -72,6 +73,7 @@ const FoodDonationForm = () => {
         </div>
       ) : (
         <>
+        
           <h1>Food Donations</h1>
           <Formik
             initialValues={formData}
@@ -287,6 +289,7 @@ const FoodDonationForm = () => {
         </>
       )}
     </div>
+    </>
   );
 };
 

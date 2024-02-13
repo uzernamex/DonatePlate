@@ -60,7 +60,7 @@ function Navigation({ user }) {
               <Button
                 color="inherit"
                 component={Link}
-                to="/single-food-donation"
+                to="/single-food-donation/:id"
               >
                 All Donations
               </Button>
