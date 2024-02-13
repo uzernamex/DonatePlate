@@ -13,6 +13,7 @@ import Collapse from "@mui/material/Collapse";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -68,11 +69,10 @@ const FoodDonationsCard = ({ foodDonations }) => {
               <ShareIcon />
             </IconButton>
             <CardActions>
-              <Button size="small"></Button>
               <Button
                 size="small"
                 component={Link}
-                to={`/single-food-donation/${donation.id}`}
+                to={`/single-food-donation/:id`}
               >
                 Learn More
               </Button>

@@ -58,9 +58,9 @@ const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api")
 // app.use("/api/food-donation-form", saveFoodDonation);
 app.use("/api/food-donations", foodDonationRoutes);
 
-const { getAllDonations } = require("../frontend/src/data_queries");
+// const { getAllDonations } = require("../frontend/src/data_queries");
 
-const saveAddress = require("../frontend/src/data_queries").saveAddress;
+// const saveAddress = require("../frontend/src/data_queries").saveAddress;
 app.use("/api/users", userApiRoutes);
 
 app.use("/users", usersRoutes);
@@ -75,6 +75,20 @@ app.get("/", (req, res) => {
 
 app.get("/all-donations", (req, res) => {
   res.render("all-donations");
+});
+
+app.get('/api/donation/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const donation = await db.query('SELECT * FROM food_donations WHERE id = $1', [id]);
+    if (donation.rows.length === 0) {
+      return res.status(404).json({ error: 'Donation not found' });
+    }
+    res.json(donation.rows[0]);
+  } catch (error) {
+    console.error('Error fetching donation:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.listen(PORT, () => {

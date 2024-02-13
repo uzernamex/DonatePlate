@@ -56,20 +56,18 @@ function Navigation({ user }) {
                 Home
               </Button>
 
-
               <Button color="inherit" component={Link} to="/all-messages">
-                All Messages
+                Messages
               </Button>
               <Button
                 color="inherit"
                 component={Link}
                 to="/single-food-donation/:id"
               >
-
-                All Donations
+                Donations
               </Button>
               <Button color="inherit" component={Link} to="/food-donation-form">
-                Start a Donation Drive
+                Host A Food Drive
               </Button>
             </Box>
           ) : (
@@ -114,7 +112,7 @@ function Navigation({ user }) {
               <MenuItem
                 onClick={closeMenu}
                 component={Link}
-                to="/single-food-donation"
+                to="/single-food-donation:id"
               >
                 All Donations
               </MenuItem>
@@ -123,7 +121,7 @@ function Navigation({ user }) {
                 component={Link}
                 to="/food-donation-form"
               >
-                Start a Donation Drive
+                Host A Food Drive
               </MenuItem>
             </MenuList>
           </Menu>

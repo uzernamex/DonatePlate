@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     element: <DisplayAllMessages />,
   },
   {
-    path: "/single-food-donation/:id",
+    path: "/single-food-donation",
     element: <FoodDonationPage />,
   },
 
@@ -37,8 +37,6 @@ const router = createBrowserRouter([
     path: "/all-donations",
     element: <FoodDonationsCard />,
   },
-
-
 ]);
 ReactDOM.render(
   <React.StrictMode>
