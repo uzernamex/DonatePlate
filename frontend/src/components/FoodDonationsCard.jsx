@@ -72,7 +72,7 @@ const FoodDonationsCard = ({ foodDonations }) => {
               <Button
                 size="small"
                 component={Link}
-                to={`/single-food-donation/:id`}
+                to={`/single-food-donation/${donation.id}`}
               >
                 Learn More
               </Button>
