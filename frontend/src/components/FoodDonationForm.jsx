@@ -4,7 +4,6 @@ import { Formik } from "formik";
 import "../styles/donation.scss";
 import Navigation from "./Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
-import { BrowserRouter } from "react-router-dom";
 
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -68,11 +67,7 @@ const FoodDonationForm = () => {
           <div>
             <h1>Form Submission Received; Thank you!</h1>
             <div className="submitted-data-new-donation">
-              <MediaCard
-                formData={formData}
-                // image={image}
-                // donation={donation}
-              />
+              <MediaCard formData={formData} />
             </div>
           </div>
         ) : (

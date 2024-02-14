@@ -11,7 +11,6 @@ import {
   Button,
   Avatar,
 } from "@mui/material";
-import { BrowserRouter } from "react-router-dom";
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutButton from "./LogoutButton";
@@ -57,15 +56,18 @@ function Navigation({ user }) {
               </Button>
 
               <Button color="inherit" component={Link} to="/all-messages">
-                Messages
+                My Messages
               </Button>
+
+
               <Button
                 color="inherit"
                 component={Link}
-                to="/single-food-donation"
-              >
-                Donations
+                to="/my-food-drives"> 
+                {/* // Replace donation drives */}
+                 My Food Drives
               </Button>
+
               <Button color="inherit" component={Link} to="/food-donation-form">
                 Host A Food Drive
               </Button>

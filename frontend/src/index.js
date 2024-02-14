@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FoodDonationPage from "./components/FoodDonationPage";
 import FoodDonationForm from "./components/FoodDonationForm";
 import DisplayAllMessages from "./components/DisplayAllMessages";
-import AllDonationsPage from "./components/AllDonationsPage";
 import FoodDonationsCard from "./components/FoodDonationsCard";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
