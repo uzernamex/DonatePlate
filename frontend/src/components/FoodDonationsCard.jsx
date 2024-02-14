@@ -27,6 +27,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const FoodDonationsCard = ({ foodDonations }) => {
+  console.log(foodDonations);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
