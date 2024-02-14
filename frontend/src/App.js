@@ -23,10 +23,7 @@ function App() {
       {!error && !isLoading && user && (
         <>
           <Profile />
-          <DisplaySingleDonationRequest />
           <InsertMessageForm />
-          <DisplayAllMessages />
-          <FoodDonationsCard />
         </>
       )}
     </div>

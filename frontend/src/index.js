@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     element: <DisplayAllMessages />,
   },
   {
-    path: "/single-food-donation",
+    path: "/single-food-donation/:id",
     element: <FoodDonationPage />,
   },
 

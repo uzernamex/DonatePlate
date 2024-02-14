@@ -27,6 +27,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const FoodDonationsCard = ({ foodDonations }) => {
+  console.log(foodDonations);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -72,7 +73,7 @@ const FoodDonationsCard = ({ foodDonations }) => {
               <Button
                 size="small"
                 component={Link}
-                to={`/single-food-donation/:id`}
+                to={`/single-food-donation/${donation.id}`}
               >
                 Learn More
               </Button>

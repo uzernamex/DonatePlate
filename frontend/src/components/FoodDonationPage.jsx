@@ -9,7 +9,7 @@ const FoodDonationPage = ({ foodDonationId }) => {
     <div>
       <Navigation user={user} />
       <DisplaySingleDonationRequest foodDonationId={foodDonationId} />
-      <InsertMessageForm foodDonationId={foodDonationId} />
+      <InsertMessageForm foodDonationId={foodDonationId} /> 
     </div>
   );
 };
