@@ -3,7 +3,7 @@ import { Typography, CircularProgress, Container, Box } from "@mui/material";
 import { useParams } from "react-router";
 
 
-const DisplaySingleDonationRequest = ({foodDonationId}) => {
+const DisplaySingleDonationRequest = () => {
   const [donationData, setDonationData] = useState(null);
   const {id} = useParams();
   useEffect(() => {

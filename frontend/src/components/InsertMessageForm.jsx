@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
+
 const InsertMessageForm = ({ foodDonationId }) => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
-
+ 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -17,8 +18,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
         name: values.name,
         email: values.email,
         message: values.message,
-        foodDonation: 1,
-        //repalce 1 with foodDonationId
+        foodDonation: foodDonationId
       }),
     })
       .then((response) => {
