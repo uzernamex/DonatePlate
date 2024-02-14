@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import FoodDonationsCard from "./FoodDonationsCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const AllDonationsPage = () => {
