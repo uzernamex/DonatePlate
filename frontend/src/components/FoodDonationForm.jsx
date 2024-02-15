@@ -69,11 +69,9 @@ const FoodDonationForm = () => {
       <Container maxWidth="md">
         <div className="donation-form-container">
           {isSubmitted ? (
-            <div>
-              <h1>Form Submission Received; Thank you!</h1>
+
               <div className="submitted-data-new-donation">
                 <MediaCard formData={formData} />
-              </div>
             </div>
           ) : (
             <>

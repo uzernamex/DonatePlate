@@ -3,7 +3,8 @@ const router = express.Router();
 const { displayAllMessages } = require('../db/queries/DisplayAllMessages');
 
 router.get('/', (req, res) => {
-  displayAllMessages()
+  console.log("UserId", req.query.userId);
+  displayAllMessages(req.query.userId)
     .then(messages => {
       res.json(messages);
     })

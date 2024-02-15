@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Typography,
-  CircularProgress,
   Container,
   Box,
   Divider,
@@ -12,10 +11,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 const DisplayMessage = () => {
   const [messageData, setMessageData] = useState([]);
   const { user } = useAuth0();
+  const userId = sessionStorage.getItem("userId");
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://localhost:8080/api/display-messages")
+      fetch(`http://localhost:8080/api/display-messages?userId=${userId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -31,7 +31,7 @@ const DisplayMessage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]); //[userId]
 
   return (
     <>
@@ -63,7 +63,7 @@ const DisplayMessage = () => {
               ))}
             </div>
           ) : (
-            <CircularProgress />
+            <Typography variant="h3">No messages available</Typography>
           )}
         </Box>
       </Container>
