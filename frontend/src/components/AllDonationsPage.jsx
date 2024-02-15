@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import FoodDonationsCard from "./FoodDonationsCard";
-
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 const AllDonationsPage = () => {
   const [foodDonations, setFoodDonations] = useState([]);
@@ -25,18 +26,26 @@ const AllDonationsPage = () => {
   }, []);
 
   return (
-    <div className="all-donations-container">
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <div>
-          <h1>Current Food Drives</h1>
-          <div className="food-donation-cards">
-            <FoodDonationsCard foodDonations={foodDonations} />
-          </div>
-        </div>
-      )}
-    </div>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Grid item>
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <>
+            <Typography variant="h2" style={{ textAlign: "center" }}>Current Food Drives</Typography>
+            <div className="food-donation-cards">
+              <FoodDonationsCard foodDonations={foodDonations} />
+            </div>
+          </>
+        )}
+      </Grid>
+    </Grid>
   );
 };
 

@@ -7,14 +7,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import FoodDonationForm from "./FoodDonationForm";
+//import FoodDonationForm from "./FoodDonationForm";
 
 
 export default function MediaCard({ formData }) {
   console.log("inside media card", formData);
   return (
     <div className="media-card">
-      <Card sx={{ maxWidth: 345 }}>
+      <Card 
+       key={formData.id}
+       sx={{ maxWidth: 345 }}>
         <CardMedia
           style={{ height: 300, paddingTop: "0%" }}
           image={require("./../docs/img-FoodDrive.png")}
@@ -42,7 +44,7 @@ export default function MediaCard({ formData }) {
           <Button
             size="small"
             component={Link}
-            to={`/single-food-donation/:id`}
+            to={`/single-food-donation/${formData.id}`}
           >
             Learn More
           </Button>

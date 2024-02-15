@@ -25,20 +25,27 @@ const ExpandMore = styled((props) => {
 }));
 
 const FoodDonationsCard = ({ foodDonations }) => {
-  console.log(foodDonations);
-  const [expanded, setExpanded] = React.useState(false);
+  const [expandedId, setExpandedId] = React.useState(null);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = (id) => {
+    setExpandedId(id === expandedId ? null : id);
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      {foodDonations.map((donation, index) => (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginBottom: "80px",
+        justifyContent: "center",
+      }}
+    >
+      {foodDonations.map((donation) => (
         <Card
           key={donation.id}
           variant="outlined"
-          style={{ marginBottom: "20px", marginRight: "40px" }}
+          style={{ marginBottom: "20px", marginRight: "40px", minWidth: "250px", maxWidth: "300px" }}
         >
           <CardMedia
             component="img"
@@ -53,7 +60,9 @@ const FoodDonationsCard = ({ foodDonations }) => {
             <Typography color="textSecondary">
               Description: {donation.description}
             </Typography>
-            <Typography color="textSecondary">
+            <Typography color="textSecondary"
+            style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "100%" }} // Added style for ellipsis
+            >
               Start Date: {new Date(donation.start_date).toLocaleDateString()}
             </Typography>
             <Typography color="textSecondary">
@@ -77,9 +86,9 @@ const FoodDonationsCard = ({ foodDonations }) => {
               </Button>
             </CardActions>
             <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
+              expand={expandedId === donation.id}
+              onClick={() => handleExpandClick(donation.id)}
+              aria-expanded={expandedId === donation.id}
               aria-label="show more"
             >
               <ExpandMoreIcon />
@@ -87,16 +96,9 @@ const FoodDonationsCard = ({ foodDonations }) => {
           </CardActions>
 
           <Collapse
-            in={expanded}
+            in={expandedId === donation.id}
             timeout="auto"
             unmountOnExit
-            style={{
-              minWidth: "200px",
-              width: "100%",
-              minHeight: expanded ? 0 : "auto",
-              maxHeight: expanded ? "none" : "200px",
-              overflowY: expanded ? "visible" : "hidden",
-            }}
           >
             <CardContent>
               <Typography paragraph>Details:</Typography>
