@@ -3,6 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import FoodDonationsCard from "./FoodDonationsCard";
 import Navigation from "./Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
+import Typography from "@mui/material/Typography";
 
 const MyDonations = () => {
   const [foodDonations, setFoodDonations] = useState([]);
@@ -52,7 +53,7 @@ const MyDonations = () => {
           <CircularProgress />
         ) : (
           <div>
-            <h1>My Donations</h1>
+             <Typography variant="h2" style={{ textAlign: "center", marginBottom: "10px" }}>My Food Drives</Typography>
 
             <div className="food-donation-cards">
               <FoodDonationsCard foodDonations={foodDonations} />
