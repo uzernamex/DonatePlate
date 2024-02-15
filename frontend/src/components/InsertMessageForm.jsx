@@ -81,7 +81,9 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 variant="outlined"
                 fullWidth
               />
-              <ErrorMessage name="name" component="div" className="error" />
+               <Typography variant="body2" sx={{ color: "red" }}>
+              <ErrorMessage name="name" component="div" className="error" sx={{ color: "red" }} />
+              </Typography>
             </Box>
             <Box mb={2}>
               <label htmlFor="email">Email</label>
@@ -92,7 +94,9 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 variant="outlined"
                 fullWidth
               />
-              <ErrorMessage name="email" component="div" className="error" />
+               <Typography variant="body2" sx={{ color: "red" }}>
+              <ErrorMessage name="email" component="div" className="error" sx={{ color: "red" }} />
+              </Typography>
             </Box>
             <Box mb={2}>
               <label htmlFor="message">Message</label>
@@ -105,7 +109,9 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 multiline
                 rows={4}
               />
-              <ErrorMessage name="message" component="div" className="error" />
+              <Typography variant="body2" sx={{ color: "red" }}>
+              <ErrorMessage name="message" component="div" className="error" sx={{ color: "red" }} />
+              </Typography>
             </Box>
             <Button type="submit" variant="contained" color="primary">
               Submit
@@ -116,7 +122,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
           <Typography
             variant="body1"
             className="success-message"
-            sx={{ color: "green" }} // Change color to green for success message
+            sx={{ color: "green" }} 
           >
             Thank you for contacting us, We will get back to you soon!
           </Typography>

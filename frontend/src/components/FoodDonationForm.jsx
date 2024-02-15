@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MediaCard from "./MediaCard";
-import { Formik } from "formik";
-import "../styles/donation.scss";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { TextField, Typography, Box, Button, Container } from "@mui/material";
 import Navigation from "./Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -62,239 +62,240 @@ const FoodDonationForm = () => {
   return (
     <>
       <Navigation user={user} />
-      <div className="donation-form-container">
-        {isSubmitted ? (
-          <div>
-            <h1>Form Submission Received; Thank you!</h1>
-            <div className="submitted-data-new-donation">
-              <MediaCard formData={formData} />
+      <Container maxWidth="md">
+        <div className="donation-form-container">
+          {isSubmitted ? (
+            <div>
+              <h1>Form Submission Received; Thank you!</h1>
+              <div className="submitted-data-new-donation">
+                <MediaCard formData={formData} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <>
-            <h1>Food Donations</h1>
-            <Formik
-              initialValues={formData}
-              onSubmit={handleSubmit}
-              validate={(values) => {
-                const errors = {};
-                if (!values.phone) {
-                  errors.phone = "Required";
-                } else if (!/^[0-9]+$/i.test(values.phone)) {
-                  errors.phone = "Invalid phone number";
-                }
-                if (
-                  !values.postal_code ||
-                  !/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/i.test(
-                    values.postal_code
-                  )
-                ) {
-                  errors.postal_code = "Invalid postal code format";
-                }
-                return errors;
-              }}
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-              }) => (
-                <form className="donation-entries" onSubmit={handleSubmit}>
-                  <label className="form-field">
-                    Title:
-                    <input
-                      type="text"
-                      name="title"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.title}
-                    />
-                    {errors.title && touched.title && errors.title}
-                  </label>
+          ) : (
+            <>
+              <Typography variant="h2">Food Drive Form</Typography>
+              <Formik
+                initialValues={formData}
+                onSubmit={handleSubmit}
+                validate={(values) => {
+                  const errors = {};
+                  if (!values.phone) {
+                    errors.phone = "Required";
+                  } else if (!/^[0-9]+$/.test(values.phone)) {
+                    errors.phone = "Invalid phone number";
+                  }
+                  if (
+                    !values.postal_code ||
+                    !/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test(
+                      values.postal_code
+                    )
+                  ) {
+                    errors.postal_code = "Invalid postal code format";
+                  }
+                  return errors;
+                }}
+              >
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                  isSubmitting,
+                }) => (
+                  <Form className="donation-entries" onSubmit={handleSubmit}>
+                    <Box mb={2}>
+                      <label htmlFor="title">Title</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="title"
+        variant="outlined"
+        fullWidth
+        size="small"
+        
+      />
+      <ErrorMessage name="title" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="description">Description</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="description"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+      <ErrorMessage name="description" component="div" className="error" />
+    </Box>
 
-                  <label className="form-field">
-                    Description:
-                    <input
-                      type="text"
-                      name="description"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.description}
-                    />
-                    {errors.description &&
-                      touched.description &&
-                      errors.description}
-                  </label>
+    <Box mb={2}>
+      <label htmlFor="start_date">Start Date</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="start_date"
+        variant="outlined"
+        fullWidth
+        placeholder="YYYY-MM-DD"
+        size="small"
+      />
+      <ErrorMessage name="start_date" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="end_date">End Date</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="end_date"
+        variant="outlined"
+        fullWidth
+        placeholder="YYYY-MM-DD"
+        size="small"
+      />
+      <ErrorMessage name="end_date" component="div" className="error" />
+    </Box>
 
-                  <label className="form-field">
-                    Start Date:
-                    <input
-                      type="text"
-                      name="start_date"
-                      placeholder="YYYY-MM-DD"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.start_date}
-                    />
-                    {errors.start_date &&
-                      touched.start_date &&
-                      errors.start_date}
-                  </label>
+    <Box mb={2}>
+      <label htmlFor="phone">Phone</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="phone"
+        variant="outlined"
+        fullWidth
+        placeholder="'1234567890'"
+        size="small"
+      />
+      <ErrorMessage name="phone" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="preferred_food">Preferred Food</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="preferred_food"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+      <ErrorMessage name="preferred_food" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="allergies">Allergies</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="allergies"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+      <ErrorMessage name="allergies" component="div" className="error" />
+    </Box>
 
-                  <label className="form-field">
-                    End Date:
-                    <input
-                      type="text"
-                      name="end_date"
-                      placeholder="YYYY-MM-DD"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.end_date}
-                    />
-                    {errors.end_date && touched.end_date && errors.end_date}
-                  </label>
-
-                  <label className="form-field">
-                    Phone:
-                    <input
-                      type="text"
-                      name="phone"
-                      placeholder="'1234567890'"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.phone}
-                    />
-                    {errors.phone && touched.phone && errors.phone}
-                  </label>
-
-                  <label className="form-field">
-                    Preferred Food:
-                    <input
-                      type="text"
-                      name="preferred_food"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.preferred_food}
-                    />
-                    {errors.preferred_food &&
-                      touched.preferred_food &&
-                      errors.preferred_food}
-                  </label>
-
-                  <label className="form-field">
-                    Allergies:
-                    <input
-                      type="text"
-                      name="allergies"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.allergies}
-                    />
-                    {errors.allergies && touched.allergies && errors.allergies}
-                  </label>
-
-                  <label className="form-field">
-                    Target Amount in Grams:
-                    <input
-                      type="text"
-                      name="target_amount_in_grams"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.target_amount_in_grams}
-                    />
-                    {errors.target_amount_in_grams &&
-                      touched.target_amount_in_grams &&
-                      errors.target_amount_in_grams}
-                  </label>
-
-                  <label className="form-field">
-                    Address:
-                    <input
-                      type="text"
-                      name="Address_1"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.Address_1}
-                    />
-                  </label>
-
-                  <label className="form-field">
-                    Address (line 2):
-                    <input
-                      type="text"
-                      name="Address_2"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.Address_2}
-                    />
-                  </label>
-
-                  <label className="form-field">
-                    City:
-                    <input
-                      type="text"
-                      name="city"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.City}
-                    />
-                  </label>
-
-                  <label className="form-field">
-                    Province:
-                    <input
-                      type="text"
-                      name="province"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.Province}
-                    />
-                    {errors.Province && touched.Province && errors.Province}
-                  </label>
-
-                  <label className="form-field">
-                    Postal Code:
-                    <input
-                      type="text"
-                      name="postal_code"
-                      placeholder="'M4P 1N8'"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.Postal_code}
-                    />
-                    {errors.Postal_code &&
-                      touched.Postal_code &&
-                      errors.Postal_code}
-                  </label>
-
-                  <label className="form-field">
-                    Country:
-                    <input
-                      type="text"
-                      name="Country"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.Country}
-                    />
-                  </label>
-
-                  <button
-                    className="submit-button"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Submit
-                  </button>
-                </form>
-              )}
-            </Formik>
-          </>
-        )}
-      </div>
+  
+    <Box mb={2}>
+      <label htmlFor="target_amount_in_grams">Target Amount in Grams</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="target_amount_in_grams"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+      <ErrorMessage name="target_amount_in_grams" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="Address_1">Address</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="Address_1"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="Address_2">Address (line 2)</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="Address_2"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="city">City</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="city"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="province">Province</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="province"
+        variant="outlined"
+        fullWidth
+        size="small"
+      />
+      <ErrorMessage name="province" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="postal_code">Postal Code</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="postal_code"
+        variant="outlined"
+        fullWidth
+        placeholder="'M4P 1N8'"
+        size="small"
+      />
+      <ErrorMessage name="postal_code" component="div" className="error" />
+    </Box>
+    <Box mb={2}>
+      <label htmlFor="Country">Country</label>
+      <Field
+        as={TextField}
+        type="text"
+        name="Country"
+        variant="outlined"
+        size="small"
+        fullWidth
+      />
+    </Box>
+    
+    <Button
+                      className="submit-button"
+                      type="submit"
+                      disabled={isSubmitting}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Submit
+                    </Button>
+                    <Box mb={6} />
+                  </Form>
+                )}
+              </Formik>
+            </>
+          )}
+        </div>
+      </Container>
     </>
   );
 };
