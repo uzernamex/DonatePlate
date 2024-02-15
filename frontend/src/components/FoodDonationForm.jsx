@@ -5,6 +5,7 @@ import { TextField, Typography, Box, Button, Container } from "@mui/material";
 import Navigation from "./Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 const FoodDonationForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { user } = useAuth0();
@@ -81,18 +82,45 @@ const FoodDonationForm = () => {
                 onSubmit={handleSubmit}
                 validate={(values) => {
                   const errors = {};
+                  if (!values.title) {
+                    errors.title = "Required";
+                  }
+                  if (!values.description) {
+                    errors.description = "Required";
+                  }
+                  if (!values.start_date) {
+                    errors.start_date = "Required";
+                  }
+                  if (!values.end_date) {
+                    errors.end_date = "Required";
+                  }
                   if (!values.phone) {
                     errors.phone = "Required";
                   } else if (!/^[0-9]+$/.test(values.phone)) {
                     errors.phone = "Invalid phone number";
                   }
-                  if (
-                    !values.postal_code ||
-                    !/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test(
-                      values.postal_code
-                    )
-                  ) {
+                  if (!values.preferred_food) {
+                    errors.preferred_food = "Required";
+                  }
+                  if (!values.target_amount_in_grams) {
+                    errors.target_amount_in_grams = "Required";
+                  }
+                  if (!values.Address_1) {
+                    errors.Address_1 = "Required";
+                  }
+                  if (!values.city) {
+                    errors.city = "Required";
+                  }
+                  if (!values.province) {
+                    errors.province = "Required";
+                  }
+                  if (!values.postal_code) {
+                    errors.postal_code = "Required";
+                  } else if (!/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test(values.postal_code)) {
                     errors.postal_code = "Invalid postal code format";
+                  }
+                  if (!values.Country) {
+                    errors.Country = "Country is required";
                   }
                   return errors;
                 }}
@@ -118,7 +146,7 @@ const FoodDonationForm = () => {
         size="small"
         
       />
-      <ErrorMessage name="title" component="div" className="error" />
+      <ErrorMessage name="title" component="div" className="error" sx={{ color: "red" }}/>
     </Box>
     <Box mb={2}>
       <label htmlFor="description">Description</label>
@@ -278,6 +306,7 @@ const FoodDonationForm = () => {
         variant="outlined"
         size="small"
         fullWidth
+        defaultValue="Canada"
       />
     </Box>
     
