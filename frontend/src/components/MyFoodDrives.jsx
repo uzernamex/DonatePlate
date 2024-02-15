@@ -1,55 +1,66 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import FoodDonationsCard from "./FoodDonationsCard";
-import { useAuth0, User } from "@auth0/auth0-react";
+import Navigation from "./Navigation";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MyDonations = () => {
-  const { isLoading, error, user } = useAuth0();
-
   const [foodDonations, setFoodDonations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { isAuthenticated } = useAuth0();
+
+  const { user, loading } = useAuth0();
+
+  const userId = sessionStorage.getItem("userId");
+  // const userId = req.body.params;
 
   useEffect(() => {
-    const fetchUserDonations = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/api/food-donations/${user.sub}/mine`, {
-          headers: {
-            Authorization: User.sub},
+    const fetchData = () => {
+      fetch(`http://localhost:8080/api/my-food-drives?userId=${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setFoodDonations(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching messages:", error);
         });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
-        setFoodDonations(responseData.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching user donations:", error);
-      }
     };
 
-    if (isAuthenticated) {
-      fetchUserDonations();
-    }
-  }, [isAuthenticated]);
+    fetchData();
+  }, [userId]);
 
+  //////
+  //     .then(
+  //       (response) => {
+  //         if (!response.ok) {
+  //           throw new Error(`HTTP error! Status: ${response.status}`);
+  //         }
+  //         fetchUserDonations();
+  //       },
+  //       [userId]
+  //     );
+  //   };
+  // });
   return (
-    <div className="my-donations-container">
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <div>
-          <h1>My Donations</h1>
+    <>
+      <Navigation user={user} />
+      <div className="my-donations-container">
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <div>
+            <h1>My Donations</h1>
 
-          <div className="food-donation-cards">
-            <FoodDonationsCard foodDonations={foodDonations} />
+            <div className="food-donation-cards">
+              <FoodDonationsCard foodDonations={foodDonations} />
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
-
 export default MyDonations;

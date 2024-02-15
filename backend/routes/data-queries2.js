@@ -31,13 +31,14 @@ const saveFoodDonation = async (formData) => {
     preferred_food,
     allergies,
     target_amount_in_grams,
-    user_id
+    user_id,
+
   } = formData;
 
   const query = `
-    INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
- RETURNING *;`;
+  INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, user_id)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+  RETURNING *;`;
 
   const values = [
     title,
@@ -67,14 +68,14 @@ const saveAddress = async (formData) => {
 
   const food_donation_id = 1; //currently keeping as static; want to make this dynamic later on.
   const query = `
-    INSERT INTO address (    address_1,
-      address_2,
-      city,
-      province,
-      postal_code,
-      country, food_donation_id)
+  INSERT INTO address (    address_1,
+    address_2,
+    city,
+    province,
+    postal_code,
+    country, food_donation_id)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
- RETURNING *;`;
+    RETURNING *;`;
 
   const addressValues = [
     address_1,
@@ -102,4 +103,5 @@ module.exports = {
   getAddress,
   getMessages,
   getFoodDonations,
+
 };
