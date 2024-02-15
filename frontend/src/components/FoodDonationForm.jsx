@@ -33,6 +33,7 @@ const FoodDonationForm = () => {
   }, []);
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    const userId = window.sessionStorage.getItem("userId");
     try {
       const foodDonationResponse = await fetch(
         "http://localhost:8080/api/food-donations",
@@ -40,8 +41,11 @@ const FoodDonationForm = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify({...values, user_id: userId}),
+
+          
         }
       );
       setFormData(values);
