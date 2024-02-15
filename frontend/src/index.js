@@ -34,6 +34,11 @@ const router = createBrowserRouter([
   },
 
   {
+    path: "/single-food-donation/:id",
+    element: <FoodDonationPage />,
+  },
+
+  {
     path: "/all-donations",
     element: <FoodDonationsCard />,
   },
