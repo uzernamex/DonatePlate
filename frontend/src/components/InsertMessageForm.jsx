@@ -42,7 +42,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
       maxWidth="md"
       sx={{
         overflowY: "auto",
-        height: "100vh",
+        height: "60vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
