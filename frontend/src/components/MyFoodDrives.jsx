@@ -4,6 +4,8 @@ import FoodDonationsCard from "./FoodDonationsCard";
 import { useAuth0, User } from "@auth0/auth0-react";
 
 const MyDonations = () => {
+  const { isLoading, error, user } = useAuth0();
+
   const [foodDonations, setFoodDonations] = useState([]);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useAuth0();
@@ -11,7 +13,7 @@ const MyDonations = () => {
   useEffect(() => {
     const fetchUserDonations = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/food-donations`, {
+        const response = await fetch(`http://localhost:8080/api/food-donations/${user.sub}/mine`, {
           headers: {
             Authorization: User.sub},
         });

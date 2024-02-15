@@ -41,7 +41,7 @@ const FoodDonationForm = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify({ ...values, user_sub: user.sub }),
         }
       );
       setFormData(values);

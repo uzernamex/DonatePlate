@@ -16,7 +16,8 @@ CREATE TABLE food_donations (
   phone BIGINT,
   preferred_food VARCHAR(255),
   allergies TEXT, target_amount_in_grams BIGINT,
-  user_id INTEGER REFERENCES users(id)
+  user_id INTEGER REFERENCES users(id),
+  user_sub TEXT REFERENCES users(sub_id)
  );
 
 DROP TABLE IF EXISTS address CASCADE;

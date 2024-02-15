@@ -20,7 +20,20 @@ const getMessages = () => {
     return data.rows;
   });
 };
-
+// const getMyMessages = () => {
+//   return db
+//     .query("SELECT * FROM messages WHERE user === user_id;")
+//     .then((data) => {
+//       return data.rows;
+//     });
+// };
+const getMyDonations = async (user_id) => {
+  const data = await db.query(
+    "SELECT * FROM food_donations WHERE user_sub = $1;",
+    [user_id]
+  );
+  return data.rows;
+};
 const saveFoodDonation = async (formData) => {
   const {
     title,
@@ -31,12 +44,13 @@ const saveFoodDonation = async (formData) => {
     preferred_food,
     allergies,
     target_amount_in_grams,
+    user_sub
   } = formData;
 
   const user_id = 1; //currently keeping as static; want to make this dynamic later on.
   const query = `
-    INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    INSERT INTO food_donations (title, description, start_date, end_date, phone, preferred_food, allergies, target_amount_in_grams, user_id, user_sub)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
  RETURNING *;`;
 
   const values = [
@@ -49,6 +63,7 @@ const saveFoodDonation = async (formData) => {
     allergies,
     target_amount_in_grams,
     user_id,
+    user_sub
   ];
 
   try {
@@ -65,7 +80,7 @@ const saveAddress = async (formData) => {
   const { address_1, address_2, city, province, postal_code, country } =
     formData;
 
-  const food_donation_id = 1; //currently keeping as static; want to make this dynamic later on.
+  // const food_donation_id = 1; //currently keeping as static; want to make this dynamic later on.
   const query = `
     INSERT INTO address (    address_1,
       address_2,
@@ -102,4 +117,6 @@ module.exports = {
   getAddress,
   getMessages,
   getFoodDonations,
+  getMyDonations,
+  // getMyMessages,
 };
