@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 
-
 const InsertMessageForm = ({ foodDonationId }) => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
- 
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
@@ -18,7 +17,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
         name: values.name,
         email: values.email,
         message: values.message,
-        foodDonation: foodDonationId
+        foodDonation: foodDonationId,
       }),
     })
       .then((response) => {
@@ -81,8 +80,13 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 variant="outlined"
                 fullWidth
               />
-               <Typography variant="body2" sx={{ color: "red" }}>
-              <ErrorMessage name="name" component="div" className="error" sx={{ color: "red" }} />
+              <Typography variant="body2" sx={{ color: "red" }}>
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="error"
+                  sx={{ color: "red" }}
+                />
               </Typography>
             </Box>
             <Box mb={2}>
@@ -94,8 +98,13 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 variant="outlined"
                 fullWidth
               />
-               <Typography variant="body2" sx={{ color: "red" }}>
-              <ErrorMessage name="email" component="div" className="error" sx={{ color: "red" }} />
+              <Typography variant="body2" sx={{ color: "red" }}>
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error"
+                  sx={{ color: "red" }}
+                />
               </Typography>
             </Box>
             <Box mb={2}>
@@ -110,7 +119,12 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 rows={4}
               />
               <Typography variant="body2" sx={{ color: "red" }}>
-              <ErrorMessage name="message" component="div" className="error" sx={{ color: "red" }} />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="error"
+                  sx={{ color: "red" }}
+                />
               </Typography>
             </Box>
             <Button type="submit" variant="contained" color="primary">
@@ -122,7 +136,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
           <Typography
             variant="body1"
             className="success-message"
-            sx={{ color: "green" }} 
+            sx={{ color: "green" }}
           >
             Thank you for contacting us, We will get back to you soon!
           </Typography>
