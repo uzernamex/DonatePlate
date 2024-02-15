@@ -1,8 +1,8 @@
 const db = require('../connection');
 
-const displayAllMessages = () => {
+const displayAllMessages = (userId) => {
   return db.query(
-    'SELECT name, email, message FROM messages'
+    `SELECT messages.*, food_donations.user_id FROM messages JOIN food_donations ON messages.food_donation_id = food_donations.id WHERE user_id = ${userId}`
   )
     .then((result) => {
       const { rows } = result;
