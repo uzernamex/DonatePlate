@@ -54,7 +54,8 @@ If you have any questions or suggestions, we welcome you to reach out.
 
 ## Collaborators
 This project is the result of the combined efforts of:
- - [Hardeep Aulakh](https://github.com/aulakhhardeep)
  - [Ayesha Cumberbatch](https://github.com/uzernamex)
+ - [Hardeep Aulakh](https://github.com/aulakhhardeep)
+
 
 If you have any queries or wish to contribute, feel free to contact us. 
