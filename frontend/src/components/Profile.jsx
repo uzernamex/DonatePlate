@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   useEffect(() => {
-    if(user){
+    if (user) {
       fetch('http://localhost:8080/api/users/login', {
         method: "POST",
         body: JSON.stringify(user),
@@ -19,7 +19,7 @@ const Profile = () => {
         window.sessionStorage.setItem("userId", res.id);
       }).catch(error => console.log(error));
     }
-   
+
   }, [user]);
   return (
     isAuthenticated && (

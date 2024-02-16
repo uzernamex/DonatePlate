@@ -7,11 +7,11 @@ import Typography from "@mui/material/Typography";
 
 const MyDonations = () => {
   const [foodDonations, setFoodDonations] = useState([]);
+  const [loadingError, setLoadingError] = useState(null);
 
   const { user, loading } = useAuth0();
 
   const userId = sessionStorage.getItem("userId");
-  // const userId = req.body.params;
 
   useEffect(() => {
     const fetchData = () => {
@@ -27,41 +27,58 @@ const MyDonations = () => {
         })
         .catch((error) => {
           console.error("Error fetching messages:", error);
+          setLoadingError(error.message);
         });
     };
 
     fetchData();
   }, [userId]);
 
-  //////
-  //     .then(
-  //       (response) => {
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error! Status: ${response.status}`);
-  //         }
-  //         fetchUserDonations();
-  //       },
-  //       [userId]
-  //     );
-  //   };
-  // });
   return (
     <>
       <Navigation user={user} />
       <div className="my-donations-container">
         {loading ? (
           <CircularProgress />
+        ) : loadingError ? (
+          <Typography variant="body1" style={{ textAlign: "center", color: "red" }}>
+            Error: {loadingError}
+          </Typography>
         ) : (
-          <div>
-             <Typography variant="h2" style={{ textAlign: "center", marginBottom: "10px" }}>My Food Drives</Typography>
-
-            <div className="food-donation-cards">
-              <FoodDonationsCard foodDonations={foodDonations} />
-            </div>
-          </div>
+          <>
+            {foodDonations.length === 0 ? (
+              <Typography
+                variant="h3"
+                style={{
+                  textAlign: "center",
+                  color: "black",
+                  border: "1px solid blue",
+                  borderRadius: "20px",
+                  padding: "10px",
+                  margin: "10px auto",
+                  maxWidth: "50%",
+                }}
+              >
+                You have no food drives
+              </Typography>
+            ) : (
+              <>
+                <Typography
+                  variant="h2"
+                  style={{ textAlign: "center", marginBottom: "10px" }}
+                >
+                  My Food Drives
+                </Typography>
+                <div className="food-donation-cards">
+                  <FoodDonationsCard foodDonations={foodDonations} />
+                </div>
+              </>
+            )}
+          </>
         )}
       </div>
     </>
   );
 };
+
 export default MyDonations;

@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const { getSingleDonationRequestById } = require('../db/queries/DisplaySingleDonationRequest');
 
 
@@ -24,5 +24,5 @@ router.get('/:id', (req, res) => {
     });
 });
 
-module.exports=router;
+module.exports = router;
 

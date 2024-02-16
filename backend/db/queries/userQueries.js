@@ -21,7 +21,7 @@ const insertUser = async (user) => {
     console.log(`Executing query to insert user:`, user);
     const query = `INSERT INTO users(name,email,sub_id) VALUES($1, $2, $3) RETURNING *`;
 
-    const { rows } = await db.query(query, [name,email,subid]);
+    const { rows } = await db.query(query, [name, email, subid]);
 
     return rows[0];
   } catch (error) {

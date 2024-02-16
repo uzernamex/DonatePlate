@@ -78,7 +78,9 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 type="text"
                 name="name"
                 variant="outlined"
+                sx={{ height: '40px', marginBottom: 2 }}
                 fullWidth
+
               />
               <Typography variant="body2" sx={{ color: "red" }}>
                 <ErrorMessage
@@ -97,6 +99,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 name="email"
                 variant="outlined"
                 fullWidth
+                sx={{ marginBottom: 2, height: '40px' }}
               />
               <Typography variant="body2" sx={{ color: "red" }}>
                 <ErrorMessage
@@ -116,7 +119,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
                 variant="outlined"
                 fullWidth
                 multiline
-                rows={4}
+                rows={2}
               />
               <Typography variant="body2" sx={{ color: "red" }}>
                 <ErrorMessage
@@ -136,7 +139,7 @@ const InsertMessageForm = ({ foodDonationId }) => {
           <Typography
             variant="body1"
             className="success-message"
-            sx={{ color: "green" }}
+            sx={{ color: "green", marginBottom: 8 }}
           >
             Thank you for contacting us, We will get back to you soon!
           </Typography>

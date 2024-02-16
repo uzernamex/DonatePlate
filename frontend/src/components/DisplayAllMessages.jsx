@@ -31,7 +31,7 @@ const DisplayMessage = () => {
     };
 
     fetchData();
-  }, [userId]); //[userId]
+  }, [userId]);
 
   return (
     <>

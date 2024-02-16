@@ -1,22 +1,8 @@
-const db = require("../db/connection");
+const db = require("../connection");
 
-const getUsers = () => {
-  return db.query("SELECT * FROM users;").then((data) => {
-    return data.rows;
-  });
-};
+
 const getFoodDonations = () => {
   return db.query("SELECT * FROM food_donations;").then((data) => {
-    return data.rows;
-  });
-};
-const getAddress = () => {
-  return db.query("SELECT * FROM address;").then((data) => {
-    return data.rows;
-  });
-};
-const getMessages = () => {
-  return db.query("SELECT * FROM messages;").then((data) => {
     return data.rows;
   });
 };
@@ -62,11 +48,12 @@ const saveFoodDonation = async (formData) => {
   }
 };
 
-const saveAddress = async (formData) => {
-  const { address_1, address_2, city, province, postal_code, country } =
-    formData;
 
-  const food_donation_id = 1; //currently keeping as static; want to make this dynamic later on.
+const saveAddress = async (formData, food_donation_id) => {
+  console.log("Saving Address");
+  const { Address_1, Address_2, city, province, postal_code, Country } =
+    formData;
+  console.log({ Address_1, Address_2, city, province, postal_code, Country });
   const query = `
   INSERT INTO address (    address_1,
     address_2,
@@ -78,12 +65,12 @@ const saveAddress = async (formData) => {
     RETURNING *;`;
 
   const addressValues = [
-    address_1,
-    address_2,
+    Address_1,
+    Address_2,
     city,
     province,
     postal_code,
-    country,
+    Country,
     food_donation_id,
   ];
 
@@ -99,9 +86,6 @@ const saveAddress = async (formData) => {
 module.exports = {
   saveFoodDonation,
   saveAddress,
-  getUsers,
-  getAddress,
-  getMessages,
   getFoodDonations,
 
 };
