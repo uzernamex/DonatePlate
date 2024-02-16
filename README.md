@@ -30,7 +30,7 @@ Please ensure that the following dependencies are installed before setting up th
 ## Getting Started
 Setting up the LHL DonatePlate Website involves the following steps:
 
-1. Clone the repository: git clone `https://github.com/uzernamex/DonatePlate/tree/main`
+1. Clone the repository: git clone `hhttps://github.com/uzernamex/DonatePlate`
 2. Open the project in your preferred code editor.
 3. Navigate to the project directory via a terminal or command prompt.
 4. Install dependencies using the `npm install` command.
