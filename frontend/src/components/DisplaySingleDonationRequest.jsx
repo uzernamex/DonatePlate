@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 
 const DisplaySingleDonationRequest = () => {
   const [donationData, setDonationData] = useState(null);
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     const fetchData = () => {
       fetch(`http://localhost:8080/api/donation/${id}`)
@@ -37,7 +37,7 @@ const DisplaySingleDonationRequest = () => {
       <Box p={4} border={1} borderColor="primary.main" borderRadius={8}>
         {donationData ? (
           <div>
-            <Typography variant="h4">{donationData.title}</Typography> {/* Change variant to h4 */}
+            <Typography variant="h4">{donationData.title}</Typography>
             <Typography className="label">
               Description: {donationData.description}
             </Typography>

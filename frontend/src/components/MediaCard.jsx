@@ -17,7 +17,7 @@ export default function MediaCard({ formData }) {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      style={{ minHeight: "60vh" }} 
+      style={{ minHeight: "60vh" }}
     >
       <Grid item xs={12}>
         <Typography variant="h6" component="div" color="green" fontWeight="bold">

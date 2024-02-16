@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# LHL DonatePlate Website
+## Overview
+The LHL DonatePlate Website is an interactive platform designed to create food drives. This document will guide you through the process of setting up and running the project.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Final product
+!["Screenshot of the home page"](frontend/public/homepage.png)
 
-## Available Scripts
+!["Screenshot of single Food Drive with Contact Us Form"](frontend/public/single-drive-contact.png)
 
-In the project directory, you can run:
+!["Screenshot of Food Drive Form"](frontend/public/food-drive-form.png)
 
-### `npm start`
+!["Screenshot of My Messages"](frontend/public/my-messages.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+!["Screenshot of My Food Drives"](frontend/public/my-food-drives.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dependencies
+Please ensure that the following dependencies are installed before setting up the LHL DonatePlate Website:
+- auth0 2.2.4
+- material ui
+- React 18.2.0
+- Axios
+- Formik
+- react-router 6.22.0
+- pg
+- sass
+- express
+- dotenv
+- morgan
 
-### `npm test`
+## Getting Started
+Setting up the LHL DonatePlate Website involves the following steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository: git clone `https://github.com/uzernamex/DonatePlate/tree/main`
+2. Open the project in your preferred code editor.
+3. Navigate to the project directory via a terminal or command prompt.
+4. Install dependencies using the `npm install` command.
+5. Start the web server using the `npm run local` command.
+6. Create a PostgreSQL database to house the DonatePlate data.
+7. Create a .env file in the project root directory and add the following environment variables:
 
-### `npm run build`
+- DB_HOST=localhost
+- DB_USER=labber 
+- DB_PASS=labber
+- DB_NAME=finals
+- DB_PORT=5432
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+8. Reset the database using npm run db:reset. Use this command each time there is a change to the database schema or seeds.
+- Check the db folder to see what gets created and seeded in the DB.
+## Running the Project
+Start the LHL DonatePlate Website with npm run local. The site will be accessible at `http://localhost:3000/`. Note: nodemon is used, so restarting your server shouldn't be necessary.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Feedback and Collaboration
+If you have any questions or suggestions, we welcome you to reach out.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Collaborators
+This project is the result of the combined efforts of:
+ - [Hardeep Aulakh](https://github.com/aulakhhardeep)
+ - [Ayesha Cumberbatch](https://github.com/uzernamex)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you have any queries or wish to contribute, feel free to contact us. 

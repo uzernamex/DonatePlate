@@ -35,7 +35,7 @@ function Navigation({ user }) {
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <FoodBankIcon />
             <Typography variant="h6" component="div">
-              Donate Plate
+              DonatePlate
             </Typography>
           </Box>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
@@ -60,7 +60,6 @@ function Navigation({ user }) {
               </Button>
 
               <Button color="inherit" component={Link} to="/my-food-drives">
-                {/* // Replace donation drives */}
                 My Food Drives
               </Button>
 

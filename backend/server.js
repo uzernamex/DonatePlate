@@ -47,24 +47,15 @@ app.use(function (req, res, next) {
 // Separated Routes for each Resource
 
 const userApiRoutes = require("./routes/users-api");
-const usersRoutes = require("./routes/users");
 const myFoodDriveRoutes = require("./routes/my-food-drives-api");
 const foodDonationRoutes = require("./routes/food-donations");
-
 const singleDonationApiRoutes = require("./routes/display-single-donation-api");
 const insertMessageAPiRoutes = require("./routes/insert-message-api");
 const displayAllMessagesAPiRoutes = require("./routes/display-all-messages-api");
 
-// app.use("/api/food-donation-form", saveFoodDonation);
+
 app.use("/api/food-donations", foodDonationRoutes);
-
-// const { getAllDonations } = require("../frontend/src/data_queries");
-
-// const saveAddress = require("../frontend/src/data_queries").saveAddress;
 app.use("/api/users", userApiRoutes);
-
-app.use("/users", usersRoutes);
-
 app.use("/api/donation", singleDonationApiRoutes);
 app.use("/api/insert-message", insertMessageAPiRoutes);
 app.use("/api/display-messages", displayAllMessagesAPiRoutes);

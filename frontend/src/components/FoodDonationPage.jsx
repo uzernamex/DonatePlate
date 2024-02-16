@@ -11,7 +11,7 @@ const FoodDonationPage = () => {
     <div>
       <Navigation user={user} />
       <DisplaySingleDonationRequest />
-      <InsertMessageForm foodDonationId={id} /> 
+      <InsertMessageForm foodDonationId={id} />
     </div>
   );
 };

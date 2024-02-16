@@ -42,11 +42,11 @@ const FoodDonationForm = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            
-          },
-          body: JSON.stringify({...values, user_id: userId}),
 
-          
+          },
+          body: JSON.stringify({ ...values, user_id: userId }),
+
+
         }
       );
       setFormData(values);
@@ -71,8 +71,8 @@ const FoodDonationForm = () => {
         <div className="donation-form-container">
           {isSubmitted ? (
 
-              <div className="submitted-data-new-donation">
-                <MediaCard formData={formData} />
+            <div className="submitted-data-new-donation">
+              <MediaCard formData={formData} />
             </div>
           ) : (
             <>
@@ -137,180 +137,180 @@ const FoodDonationForm = () => {
                   <Form className="donation-entries" onSubmit={handleSubmit}>
                     <Box mb={2}>
                       <label htmlFor="title">Title</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="title"
-        variant="outlined"
-        fullWidth
-        size="small"
-        
-      />
-      <ErrorMessage name="title" component="div" className="error" sx={{ color: "red" }}/>
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="description">Description</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="description"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <ErrorMessage name="description" component="div" className="error" />
-    </Box>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="title"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
 
-    <Box mb={2}>
-      <label htmlFor="start_date">Start Date</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="start_date"
-        variant="outlined"
-        fullWidth
-        placeholder="YYYY-MM-DD"
-        size="small"
-      />
-      <ErrorMessage name="start_date" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="end_date">End Date</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="end_date"
-        variant="outlined"
-        fullWidth
-        placeholder="YYYY-MM-DD"
-        size="small"
-      />
-      <ErrorMessage name="end_date" component="div" className="error" />
-    </Box>
+                      />
+                      <ErrorMessage name="title" component="div" className="error" sx={{ color: "red" }} />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="description">Description</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="description"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                      <ErrorMessage name="description" component="div" className="error" />
+                    </Box>
 
-    <Box mb={2}>
-      <label htmlFor="phone">Phone</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="phone"
-        variant="outlined"
-        fullWidth
-        placeholder="'1234567890'"
-        size="small"
-      />
-      <ErrorMessage name="phone" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="preferred_food">Preferred Food</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="preferred_food"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <ErrorMessage name="preferred_food" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="allergies">Allergies</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="allergies"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <ErrorMessage name="allergies" component="div" className="error" />
-    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="start_date">Start Date</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="start_date"
+                        variant="outlined"
+                        fullWidth
+                        placeholder="YYYY-MM-DD"
+                        size="small"
+                      />
+                      <ErrorMessage name="start_date" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="end_date">End Date</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="end_date"
+                        variant="outlined"
+                        fullWidth
+                        placeholder="YYYY-MM-DD"
+                        size="small"
+                      />
+                      <ErrorMessage name="end_date" component="div" className="error" />
+                    </Box>
 
-  
-    <Box mb={2}>
-      <label htmlFor="target_amount_in_grams">Target Amount in Grams</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="target_amount_in_grams"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <ErrorMessage name="target_amount_in_grams" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="Address_1">Address</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="Address_1"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="Address_2">Address (line 2)</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="Address_2"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="city">City</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="city"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="province">Province</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="province"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <ErrorMessage name="province" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="postal_code">Postal Code</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="postal_code"
-        variant="outlined"
-        fullWidth
-        placeholder="'M4P 1N8'"
-        size="small"
-      />
-      <ErrorMessage name="postal_code" component="div" className="error" />
-    </Box>
-    <Box mb={2}>
-      <label htmlFor="Country">Country</label>
-      <Field
-        as={TextField}
-        type="text"
-        name="Country"
-        variant="outlined"
-        size="small"
-        fullWidth
-        defaultValue="Canada"
-      />
-    </Box>
-    
-    <Button
+                    <Box mb={2}>
+                      <label htmlFor="phone">Phone</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="phone"
+                        variant="outlined"
+                        fullWidth
+                        placeholder="'1234567890'"
+                        size="small"
+                      />
+                      <ErrorMessage name="phone" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="preferred_food">Preferred Food</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="preferred_food"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                      <ErrorMessage name="preferred_food" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="allergies">Allergies</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="allergies"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                      <ErrorMessage name="allergies" component="div" className="error" />
+                    </Box>
+
+
+                    <Box mb={2}>
+                      <label htmlFor="target_amount_in_grams">Target Amount in Grams</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="target_amount_in_grams"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                      <ErrorMessage name="target_amount_in_grams" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="Address_1">Address</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="Address_1"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="Address_2">Address (line 2)</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="Address_2"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="city">City</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="city"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="province">Province</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="province"
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                      />
+                      <ErrorMessage name="province" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="postal_code">Postal Code</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="postal_code"
+                        variant="outlined"
+                        fullWidth
+                        placeholder="'M4P 1N8'"
+                        size="small"
+                      />
+                      <ErrorMessage name="postal_code" component="div" className="error" />
+                    </Box>
+                    <Box mb={2}>
+                      <label htmlFor="Country">Country</label>
+                      <Field
+                        as={TextField}
+                        type="text"
+                        name="Country"
+                        variant="outlined"
+                        size="small"
+                        fullWidth
+                        defaultValue="Canada"
+                      />
+                    </Box>
+
+                    <Button
                       className="submit-button"
                       type="submit"
                       disabled={isSubmitting}

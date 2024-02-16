@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { saveFoodDonation, getFoodDonations } = require("./data-queries2.js");
+const { saveFoodDonation, getFoodDonations, saveAddress } = require("../db/queries/data-queries2.js");
 
 router.get("/", (req, res) => {
   getFoodDonations()
@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     const formData = req.body;
 
     saveFoodDonation(formData).then((data) => {
-      console.log("data:", data);
+      saveAddress(formData, data.id);
       res.status(200).json({ message: "Form data saved", key: data });
     });
   } catch (error) {

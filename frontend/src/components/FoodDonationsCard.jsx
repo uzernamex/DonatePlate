@@ -61,7 +61,7 @@ const FoodDonationsCard = ({ foodDonations }) => {
               Description: {donation.description}
             </Typography>
             <Typography color="textSecondary"
-            style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "100%" }} // Added style for ellipsis
+              style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "100%" }}
             >
               Start Date: {new Date(donation.start_date).toLocaleDateString()}
             </Typography>
